@@ -32,6 +32,7 @@ ul.topnav li.right {float: right;}
   ul.topnav li {float: none;}
 }
 
+/* HEADER IMAGES */
 IMG.profil {
     width: calc(5em + 6vw);
     display: block;
@@ -48,6 +49,15 @@ IMG.contact {
     margin-top: 50px;
 }
 
+IMG.projects {
+    width: calc(2em + 1vw);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+/* CONTAINERS */
 div.prf_container {
     min-height: 10em;
     /* display: table-cell; */
@@ -55,6 +65,21 @@ div.prf_container {
     /* background-color: #333; */
 }
 
+div.ct_container {
+    min-height: 10em;
+    /* display: table-cell; */
+    vertical-align: middle;
+    /* background-color: #333; */
+}
+
+div.pr_container {
+    min-height: 10em;
+    /* display: table-cell; */
+    vertical-align: middle;
+    /* background-color: #333; */
+}
+
+/* TEXTS */
 p.prf_text {
     margin-left: auto;
     margin-right: auto;
@@ -97,4 +122,72 @@ p.ct_text2 {
     /* font-size: calc(0.6em + 0.8vw); */
     font-weight: lighter;
     color: rgb(197, 215, 223);
+}
+
+p.pr_text {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    /* width: 50em; */
+    text-align: center;
+    font-size: calc(0.6em + 0.4vw);
+    /* font-weight: bold; */
+    color: white;
+}
+
+h2.labels {
+    list-style-type: none;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-top: 50px; */
+    max-width: 40em;
+    text-align: center;
+    /* font-size: calc(0.6em + 0.8vw); */
+    font-weight: lighter;
+    color: rgb(197, 215, 223);
+}
+
+/* BABYLON */
+/* #renderCanvas {
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+} */
+
+/* IFRAMES */
+ul.iframe_list{
+    /* display: block; */
+    margin-left: auto;
+    margin-right: auto;
+    list-style: none;
+    list-style-type: none;
+    /* margin-top: 0px; */
+    /* max-width: 40em; */
+    text-align: center;
+    /* font-size: calc(0.6em + 0.8vw); */
+    font-weight: lighter;
+    color: rgb(197, 215, 223);
+}
+
+/* ARCHVIZ */
+ul.archviz_list{
+    /* display: block; */
+    /* margin-left: auto;
+    margin-right: auto; */
+    list-style: none;
+    list-style-type: none;
+    /* margin-top: 0px; */
+    /* max-width: 40em; */
+    text-align: center;
+    /* font-size: calc(0.6em + 0.8vw); */
+    font-weight: lighter;
+    color: rgb(197, 215, 223);
+}
+
+IMG.archviz{
+    width: calc(15em + 30vw);
+    /* display: block; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
 }
