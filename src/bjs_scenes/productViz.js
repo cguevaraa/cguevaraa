@@ -19,7 +19,10 @@ var createScene = function () {
   // );
 
   //CAMERA VR SETUP
-  var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 1, -5), scene);
+  var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(-3, 1, 3), scene);
+
+  // This targets the camera to scene origin with Y bias: +1
+  camera.setTarget(new BABYLON.Vector3(0,1.1,0));
 
   camera.attachControl(canvas, true); //Set the last to false to avoid global zoom/scroll in page
   
