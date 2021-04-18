@@ -19,12 +19,20 @@ var createScene = function () {
   // );
 
   //CAMERA VR SETUP
-  var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(-3, 1, 3), scene);
+  var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(2, 1, 3), scene);
 
   // This targets the camera to scene origin with Y bias: +1
-  camera.setTarget(new BABYLON.Vector3(0,1.1,0));
+  camera.setTarget(new BABYLON.Vector3(0,1,0));
 
   camera.attachControl(canvas, true); //Set the last to false to avoid global zoom/scroll in page
+
+  //Create PBR material
+  var pbr = new BABYLON.PBRMaterial("pbr", scene);
+  pbr.metallic = 0.0;
+  pbr.roughness = 0;      
+  pbr.subSurface.isRefractionEnabled = true;
+  pbr.subSurface.indexOfRefraction = 1.5;
+  pbr.subSurface.tintColor = new BABYLON.Color3(0, 0, 0);
   
   //NON-VR SETUP
   // camera.minZ = 0.1;
@@ -61,9 +69,13 @@ var createScene = function () {
       shadowGenerator.addShadowCaster(element, true)
     );
 
+    model.meshes.forEach((element) =>
+    element.material = pbr
+  );
+
   }
 
-  loadMeshes("", "/src/3Dmodels/", "gyarados.glb"); //Here the model to load
+  loadMeshes("", "/src/3Dmodels/", "japanDragon.glb"); //Here the model to load
 
   //Setup environment
   var env = scene.createDefaultEnvironment({
@@ -99,11 +111,17 @@ var createScene = function () {
   var shadowGenerator = new BABYLON.ShadowGenerator(2048, dLight);
   shadowGenerator.useBlurExponentialShadowMap = true;
 
-//   // Code in this function will run ~60 times per second
-//   scene.registerBeforeRender(function () {
-//     //Slowly rotate camera
-//     camera.alpha += 0.002;
-//   });
+  //Auxiliar variable to animate materials
+  var a = 0;
+  // Code in this function will run ~60 times per second
+  scene.registerBeforeRender(function () {
+    //Slowly rotate camera
+    // camera.alpha += 0.002;
+    a += 0.005;
+    pbr.subSurface.tintColor.g = Math.cos(a) * 0.5 + 0.5;
+    pbr.subSurface.tintColor.b = pbr.subSurface.tintColor.g;
+
+  });
 
   
 //*********WEBXR************************
