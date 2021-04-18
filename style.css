@@ -1,6 +1,7 @@
 body {
+    font-family: "Lucida Console", "Courier New", monospace;
     margin: 0;
-    background-color: rgb(49, 63, 63);
+    background-color: rgb(37, 46, 46);
 }
 
 ul.topnav {
@@ -8,12 +9,16 @@ ul.topnav {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: rgb(36, 35, 35);
 }
 
-ul.topnav li {float: left;}
+ul.topnav li {
+    list-style-type: none;
+    float: left;
+}
 
 ul.topnav li a {
+    list-style-type: none;
   display: block;
   color: white;
   text-align: center;
@@ -158,6 +163,7 @@ h2.labels {
 }
 
 ul.babylon_list{
+    list-style-type: none;
     display: block;
     margin-left: auto;
     margin-right: auto;
