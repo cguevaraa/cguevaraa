@@ -11,9 +11,9 @@ var createScene = function () {
   var camera = new BABYLON.ArcRotateCamera(
     "camera",
     Math.PI / 3,
-    Math.PI / 1.5,
+    Math.PI / 1.7,
     4,
-    new BABYLON.Vector3(0, 1.5, 0),
+    new BABYLON.Vector3(0, 1, 0),
     scene
   );
 
@@ -71,7 +71,7 @@ var createScene = function () {
 
   }
 
-  loadMeshes("", "/src/3Dmodels/", "japanDragon.glb"); //Here the model to load
+  loadMeshes("", "/src/3Dmodels/", "dragonRocks.glb"); //Here the model to load
 
   //Setup environment
   var env = scene.createDefaultEnvironment({
@@ -82,7 +82,7 @@ var createScene = function () {
     groundSize: 100,
     groundColor: new BABYLON.Color3(0.02,0.02,0.02),
     enableGroundShadow: true,
-    groundYBias: 1,
+    groundYBias: 0.875,
   });
 
    //Build a mathematical ground with its normal and an offset
