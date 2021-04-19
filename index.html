@@ -4,30 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="styleLP.css" />
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+    <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
     <title>CG Portfolio</title>
 </head>
 <body>
-    <div class="container">
-    <!-- HEADER -->
-    <ul class="topnav">
-        <li><a href="#index">About me</a></li>
-        <li><a href="src/projects.html">Projects</a></li>
-        <li><a href="src/contact.html">Contact</a></li>
-        <!-- <li class="right"><a href="#about">About</a></li> -->
-      </ul>
-      <div style="padding:0 16px;">
-    <div class="prf_container">
+    <!-- 3D background -->
+    <canvas id="rCanvasLP" touch-action="none"></canvas> <!-- touch-action="none" for best results from PEP -->
+    <script src="/src/bjs_scenes/landingPage.js"></script>
+    <div>
+            <!-- HEADER -->
+            <ul class="topnav">
+                <li><a href="#index">About me</a></li>
+                <li><a href="src/projects.html">Projects</a></li>
+                <li><a href="src/contact.html">Contact</a></li>
+              </ul>
+              <!-- <div style="padding:0 16px;"> -->
+    </div>
+    <div id="centerElement">
+        <div class="prf_container">
         <IMG class="profil" src="/src/img/roundPhoto.png" alt="My face should be here...">
-            <p class="prf_text">Hello visitor! Welcome to my page!</p>
-            <p class="prf_text2">
-                I'm Christian, a 3D technical artist with
+            <p id="hello">Hello visitor! Welcome to my page!</p>
+            <p id="prf_text">
+                My name is Christian, I'm a 3D technical artist with
                 a strong interest in coding and education.
                 I'm passionate about creating fun and appealing
                 interactive experiences. At the tab <i>projects</i> you will find some of my
                 works in both sides: 3D art and code (my 2nd and 3rd names... :D). Enjoy!
             </p>
-    </div>
+        </div>
     </div>
 </body>
 </html>

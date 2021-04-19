@@ -1,0 +1,92 @@
+html, body {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Lucida Console", "Courier New";
+}
+
+#rCanvasLP {
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+}
+
+#centerElement {
+    color:white;
+    position:absolute;
+    top:50%;
+    z-index:100;
+    width:100%;
+    text-align: center; 
+    transform: translate(0,-100%);
+    font-family: "Lucida Console", "Courier New"; 
+    letter-spacing: 5px;
+    /* text-transform: uppercase; font-size: 16px; */
+    min-height: 10em;
+    vertical-align: middle;
+ }
+
+#hello {
+    text-transform: uppercase;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1em;
+    max-width: 60%;
+    max-height: 3em;
+    font-weight: bold;
+    text-align: center;
+}
+
+#prf_text {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1em;
+    max-width: 70vw;
+    max-height: 3em;
+    text-align: center;
+}
+
+ul.topnav {
+  top:3%;
+  left:1%;
+  position:absolute;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(10, 10, 10);
+}
+
+ul.topnav li {
+    list-style-type: none;
+    float: left;
+}
+
+ul.topnav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* ul.topnav li a:hover:not(.active) {background-color: #111;}
+
+ul.topnav li a.active {background-color: #4CAF50;}
+
+ul.topnav li.right {float: right;} */
+
+@media screen and (max-width: 600px) {
+  ul.topnav li.right, 
+  ul.topnav li {float: none;}
+}
+
+/* HEADER IMAGES */
+IMG.profil {
+    width: calc(5em + 6vw);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-top: 50px; */
+}
