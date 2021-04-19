@@ -4,25 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <link rel="stylesheet" type="text/css" href="styleCP.css" />
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+    <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
     <title>CG Portfolio</title>
 </head>
 <body>
-    <!-- HEADER -->
-    <ul class="topnav">
-        <li><a href="../index.html">About me</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <!-- <li class="right"><a href="#about">About</a></li> -->
-      </ul>
-      <div style="padding:0 16px;">
-    <div class="ct_container">
-        <IMG class="contact" src="/src/img/paper_plane_PNG20.png" alt="Normally, there's an image here...">
-            <p class="ct_text">You can reach me here:</p>
-            <p class="ct_text2">
-                <a href="mailto:christian.e.guevara@gmail.com">christian.e.guevara@gmail.com</a>
-            </p>
+    <!-- 3D background -->
+    <canvas id="rCanvasLP" touch-action="none"></canvas> <!-- touch-action="none" for best results from PEP -->
+    <script src="/src/bjs_scenes/contactPage.js"></script>
+    <div>
+            <!-- HEADER -->
+            <ul class="topnav">
+                <li><a href="../index.html">About me</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+              <!-- <div style="padding:0 16px;"> -->
     </div>
-
+    <div id="centerElement">
+        <div class="prf_container">
+        <IMG class="profil" src="/src/img/paper_plane_PNG20.png" alt="Normally, there's an image here...">
+            <p id="prf_text">You can reach me here:</p>
+            <a href="mailto:christian.e.guevara@gmail.com" style="color:whitesmoke">christian.e.guevara@gmail.com</a>
+        </div>
+    </div>
 </body>
 </html>

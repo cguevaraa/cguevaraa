@@ -11,7 +11,7 @@ var createScene = function () {
   var camera = new BABYLON.ArcRotateCamera(
     "camera",
     Math.PI / 3,
-    Math.PI / 1.7,
+    Math.PI / 1.8,
     4,
     new BABYLON.Vector3(0, 1, 0),
     scene
@@ -71,7 +71,7 @@ var createScene = function () {
 
   }
 
-  loadMeshes("", "/src/3Dmodels/", "dragonRocks.glb"); //Here the model to load
+  loadMeshes("", "/src/3Dmodels/", "rocks.glb"); //Here the model to load
 
   //Setup environment
   var env = scene.createDefaultEnvironment({
@@ -112,7 +112,7 @@ var createScene = function () {
   // Code in this function will run ~60 times per second
   scene.registerBeforeRender(function () {
     //Slowly rotate camera
-    camera.alpha += 0.0005;
+    camera.alpha += 0.00025;
     a += 0.005;
     pbr.subSurface.tintColor.g = Math.cos(a) * 0.5 + 0.5;
     pbr.subSurface.tintColor.b = pbr.subSurface.tintColor.g;
