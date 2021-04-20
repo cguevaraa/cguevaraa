@@ -1,4 +1,4 @@
-const canvas = document.getElementById("rCanvasCP"); // Get the canvas element
+const canvas = document.getElementById("rCanvasPP"); // Get the canvas element
 const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
 
 //***PG */
