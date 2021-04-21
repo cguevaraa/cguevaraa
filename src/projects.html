@@ -1,27 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style/stylePP.css" />
+    <link rel="stylesheet" type="text/css" href="../terminal.css" />
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
     <script src="https://cdn.babylonjs.com/babylon.js"></script>
     <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
     <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
     <title>CG Portfolio</title>
 </head>
 <body>
-    <!-- 3D background -->
-    <canvas id="rCanvasPP" touch-action="none"></canvas> <!-- touch-action="none" for best results from PEP -->
-    <script src="/src/bjs_scenes/projectPage.js"></script>
+    <div id="content">
+    <!--HEADER -->
+    <ul class="topnav">
+        <li><a href="../index.html">About me</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="right"><a href="#about">About</a></li>
+      </ul>
+      <!-- <div style="padding:0 16px;"> -->
+            </div>
+    <div class="pr_container">
+        <IMG class="projects" src="/src/img/attention_PNG60.png" alt="Normally, there's an image here...">
+            <p class="pr_text">(This page is still under construction)</p>
+    </div>
+    <!-- BABYLON SECTION -->
+    <div><h2 class="labels">WebXR (only compatible devices) </h2></div>
+        <div>
+            <ul class="babylon_list">
+                <li>
+                    <canvas id="renderCanvas" touch-action="none"></canvas> <!-- touch-action="none" for best results from PEP -->
+                    <script src="/src/bjs_scenes/productViz.js"></script>  <!--Here we call our (Babylon) code -->
+                </li>
+            </ul>
+        </div>
+    <!-- GODOT SECTION -->
+    <div><h2 class="labels">WebAssembly / WebGL</h2></div>
+        <div>
+            <ul class="iframe_list">
+                <li>
+                    <a href="/src/wasmGames/squashTheCreeps.html" target="_blank"><h1>Let's play a game!</h1></a>
+                </li>
+            </ul>
+        </div>
+    <!-- SKETCHFAB SECTION -->
+    <div><h2 class="labels">3D Models</h2></div>
+            <div>
+                <ul class="iframe_list">
+                    <li>
+                        <iframe title="Buhardilla" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="fullscreen; autoplay; vr" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/4c30073d53aa47f79e5eb6884eb3ef82/embed">
+                        </iframe>
+                        <iframe title="Bedroom 1" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="fullscreen; autoplay; vr" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/a04c6b18ee334b1db96bbdb9736a5a36/embed">
+                        </iframe>
+                        <iframe title="Garage" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="fullscreen; autoplay; vr" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/efbd455fd3a248049b1bedeb213ba7ea/embed">
+                        </iframe>
+                    </li>
+                    <li>
+                        <iframe title="Baby Groot" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="fullscreen; autoplay; vr" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/36a1c611c5164f39a4fa7cb4faebd458/embed">
+                        </iframe>
+                        <iframe title="Electrical box bracket" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="fullscreen; autoplay; vr" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/b5cf37ccdb9d4b4ca4c68c0121f976f6/embed">
+                        </iframe>
+                        <iframe title="Mutant cat I" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="fullscreen; autoplay; vr" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/257d593760ae483e8bf6c45af07e9e30/embed">
+                        </iframe>
+                    </li>
+                </ul>
+            </div>
+    <!-- CYCLES SECTION -->
+    <div><h2 class="labels">ArchViz Images</h2></div>
     <div>
-        <!-- HEADER -->
-        <ul class="topnav">
-            <li><a href="../index.html">About me</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
+        <ul class="archviz_list">
+            <li>
+                <IMG class="archviz" src="/src/img/ArchViz_01.jpeg" alt="ArchViz_01">
+                <IMG class="archviz" src="/src/img/ArchViz_02.jpeg" alt="ArchViz_02">
+                <IMG class="archviz" src="/src/img/ArchViz_03.jpeg" alt="ArchViz_03">
+                <IMG class="archviz" src="/src/img/ArchViz_04.jpeg" alt="ArchViz_04">
+                <IMG class="archviz" src="/src/img/ArchViz_05.jpeg" alt="ArchViz_05">
+                <IMG class="archviz" src="/src/img/ArchViz_06.jpeg" alt="ArchViz_06">
+            </li>
         </ul>
-            <!-- <div style="padding:0 16px;"> -->
+    </div>
+    <!-- OLD REEL SECTION -->
+    <div><h2 class="labels">Reel 2019</h2></div>
+            <div>
+                <ul class="reel_list">
+                    <li>
+                        <iframe src="https://player.vimeo.com/video/342067546" width="640" height="380" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                    </li>
+                </ul>
+            </div>
     </div>
     </body>
 </html>
