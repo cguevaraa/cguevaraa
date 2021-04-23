@@ -6,6 +6,21 @@ const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engi
 //Scene and camera
 var createScene = function () {
   var scene = new BABYLON.Scene(engine);
+
+   //Lights
+   var dLight = new BABYLON.DirectionalLight(
+    "dLight",
+    new BABYLON.Vector3(0.02, -0.05, -0.05),
+    scene
+  );
+  dLight.position = new BABYLON.Vector3(0, 20, 0);
+  var pLight = new BABYLON.PointLight(
+    "pLight",
+    new BABYLON.Vector3(5, 10, -5),
+    scene
+  );
+  pLight.diffuse = new BABYLON.Color3(0.53, 0.66, 0.74);
+  pLight.specular = new BABYLON.Color3(0.83, 0.86, 0.89);
   
   //CAMERA NON-VR SETUP
   var camera = new BABYLON.ArcRotateCamera(
@@ -25,10 +40,10 @@ var createScene = function () {
   //Create PBR material
   var pbr = new BABYLON.PBRMaterial("pbr", scene);
   pbr.metallic = 0.0;
-  pbr.roughness = 0;      
+  pbr.roughness = 0;
   pbr.subSurface.isRefractionEnabled = true;
   pbr.subSurface.indexOfRefraction = 1.5;
-  pbr.subSurface.tintColor = new BABYLON.Color3(0, 0, 0);
+  pbr.subSurface.tintColor = new BABYLON.Color3(1, 1, 1);
   
   //NON-VR SETUP
   camera.minZ = 0.1;
@@ -64,10 +79,37 @@ var createScene = function () {
     model.meshes.forEach((element) =>
       shadowGenerator.addShadowCaster(element, true)
     );
-
+    
+    //Add the material we've created to each mesh
     model.meshes.forEach((element) =>
     element.material = pbr
-  );
+    );
+
+           // On pick interpolations
+           var prepareButton = function(mesh) {
+            mesh.actionManager = new BABYLON.ActionManager(scene);//creo la colision en el cubo y agrego a escena
+            
+            //accion que va a pasar al tocar el cubo
+            mesh.actionManager.registerAction(
+                new BABYLON.InterpolateValueAction(
+                    BABYLON.ActionManager.OnPickTrigger,
+                    mesh.material.subSurface,
+                    'tintColor',
+                    BABYLON.Color3.Teal(),
+                    // color,
+                    1000
+                )
+            );
+        };//*/
+    
+
+
+    var m = model.meshes[1];
+    m.actionManager = new BABYLON.ActionManager(scene);
+
+    console.log(m);
+
+    prepareButton(m);
 
   }
 
@@ -88,36 +130,23 @@ var createScene = function () {
    //Build a mathematical ground with its normal and an offset
    var groundData = new BABYLON.Plane(1, 1, 1, -1);
 
-  //Lights
-  var dLight = new BABYLON.DirectionalLight(
-    "dLight",
-    new BABYLON.Vector3(0.02, -0.05, -0.05),
-    scene
-  );
-  dLight.position = new BABYLON.Vector3(0, 20, 0);
-  var pLight = new BABYLON.PointLight(
-    "pLight",
-    new BABYLON.Vector3(5, 10, -5),
-    scene
-  );
-  pLight.diffuse = new BABYLON.Color3(0.53, 0.66, 0.74);
-  pLight.specular = new BABYLON.Color3(0.83, 0.86, 0.89);
-
   //Shadows
   var shadowGenerator = new BABYLON.ShadowGenerator(2048, dLight);
   shadowGenerator.useBlurExponentialShadowMap = true;
 
-  //Auxiliar variable to animate materials
-  var a = 0;
-  // Code in this function will run ~60 times per second
-  scene.registerBeforeRender(function () {
-    //Slowly rotate camera
-    camera.alpha += 0.0005;
-    a += 0.005;
-    pbr.subSurface.tintColor.g = Math.cos(a) * 0.5 + 0.5;
-    pbr.subSurface.tintColor.b = pbr.subSurface.tintColor.g;
 
-  });
+//***ANIMATION***
+  // //Auxiliar variable to animate materials
+  // var a = 0;
+  // // Code in this function will run ~60 times per second
+  // scene.registerBeforeRender(function () {
+  //   //Slowly rotate camera
+  //   camera.alpha += 0.0005;
+  //   a += 0.005;
+  //   pbr.subSurface.tintColor.g = Math.cos(a) * 0.5 + 0.5;
+  //   pbr.subSurface.tintColor.b = pbr.subSurface.tintColor.g;
+
+  //   });
 
   return scene;
 };
