@@ -4,17 +4,19 @@ const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engi
 //***PG */
 
 //Scene and camera
-var createScene = function () {
-  var scene = new BABYLON.Scene(engine);
+const createScene = function () {
+const scene = new BABYLON.Scene(engine);
+
+const promises = [];
 
    //Lights
-   var dLight = new BABYLON.DirectionalLight(
+   const dLight = new BABYLON.DirectionalLight(
     "dLight",
     new BABYLON.Vector3(0.02, -0.05, -0.05),
     scene
   );
   dLight.position = new BABYLON.Vector3(0, 20, 0);
-  var pLight = new BABYLON.PointLight(
+  const pLight = new BABYLON.PointLight(
     "pLight",
     new BABYLON.Vector3(5, 10, -5),
     scene
@@ -23,7 +25,7 @@ var createScene = function () {
   pLight.specular = new BABYLON.Color3(0.83, 0.86, 0.89);
   
   //CAMERA NON-VR SETUP
-  var camera = new BABYLON.ArcRotateCamera(
+  const camera = new BABYLON.ArcRotateCamera(
     "camera",
     Math.PI / 3,
     Math.PI / 1.7,
@@ -38,7 +40,7 @@ var createScene = function () {
   camera.attachControl(canvas, false); //Set the last to false to avoid global zoom/scroll in page
 
   //Create PBR material
-  var pbr = new BABYLON.PBRMaterial("pbr", scene);
+  const pbr = new BABYLON.PBRMaterial("pbr", scene);
   pbr.metallic = 0.0;
   pbr.roughness = 0;
   pbr.subSurface.isRefractionEnabled = true;
@@ -53,15 +55,15 @@ var createScene = function () {
   camera._panningMouseButton = null;
 
   // Create a 'sphere' to use as camera target
-  var sphere = BABYLON.MeshBuilder.CreateSphere(
-    "sphere",
+  const camTarget = BABYLON.MeshBuilder.CreateSphere(
+    "camTarget",
     { diameter: 0.0001, segments: 4 },
     scene
   );
-  // Move the sphere upward
-  sphere.position.y = 1;
+  // Move the camTarget upward
+  camTarget.position.y = 1;
   //Set camera target
-  camera.target = sphere.absolutePosition;
+  camera.target = camTarget.absolutePosition;
 
   /**
    * ASYNC/AWAIT Function to load a model into the scene
@@ -70,7 +72,7 @@ var createScene = function () {
    * @param {*} fileName
    */
   async function loadMeshes(meshNames, rootUrl, fileName) {
-    var model = await BABYLON.SceneLoader.ImportMeshAsync(
+    const model = await BABYLON.SceneLoader.ImportMeshAsync(
       meshNames,
       rootUrl,
       fileName
@@ -86,7 +88,7 @@ var createScene = function () {
     );
 
            // On pick interpolations
-           var prepareButton = function(mesh) {
+           const prepareButton = function(mesh) {
             mesh.actionManager = new BABYLON.ActionManager(scene);//creo la colision en el cubo y agrego a escena
             
             //accion que va a pasar al tocar el cubo
@@ -104,7 +106,7 @@ var createScene = function () {
     
 
 
-    var m = model.meshes[1];
+    const m = model.meshes[1];
     m.actionManager = new BABYLON.ActionManager(scene);
 
     console.log(m);
@@ -116,7 +118,7 @@ var createScene = function () {
   loadMeshes("", "/src/3Dmodels/", "dragonRocks.glb"); //Here the model to load
 
   //Setup environment
-  var env = scene.createDefaultEnvironment({
+  const env = scene.createDefaultEnvironment({
     createSkybox: true,
     skyboxSize: 150,
     skyboxColor: new BABYLON.Color3(0.01,0.01,0.01),
@@ -128,16 +130,16 @@ var createScene = function () {
   });
 
    //Build a mathematical ground with its normal and an offset
-   var groundData = new BABYLON.Plane(1, 1, 1, -1);
+   const groundData = new BABYLON.Plane(1, 1, 1, -1);
 
   //Shadows
-  var shadowGenerator = new BABYLON.ShadowGenerator(2048, dLight);
+  const shadowGenerator = new BABYLON.ShadowGenerator(2048, dLight);
   shadowGenerator.useBlurExponentialShadowMap = true;
 
 
 //***ANIMATION***
-  // //Auxiliar variable to animate materials
-  // var a = 0;
+  // //Auxiliar constiable to animate materials
+  // const a = 0;
   // // Code in this function will run ~60 times per second
   // scene.registerBeforeRender(function () {
   //   //Slowly rotate camera
