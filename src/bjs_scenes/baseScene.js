@@ -139,9 +139,12 @@ function createPBRFromTextures(scene, albedo, bump, orm)
     pbr.useMetallnessFromMetallicTextureBlue = true;
     pbr.useRoughnessFromMetallicTextureAlpha = false;
 
-    pbr.albedoTexture = new BABYLON.Texture(, scene);
-    pbr.bumpTexture = new BABYLON.Texture("src/3Dmodels/textures/TX_golfBall_nrm_invr.png", scene);
-    pbr.metallicTexture = new BABYLON.Texture("src/3Dmodels/textures/TX_golfBall_orm.png", scene);;
+    pbr.albedoTexture = new BABYLON.Texture(albedo, scene);
+    pbr.bumpTexture = new BABYLON.Texture(bump, scene);
+    pbr.metallicTexture = new BABYLON.Texture(orm, scene);
+    //pbr.bumpTexture = new BABYLON.Texture("src/3Dmodels/textures/TX_golfBall_nrm_invr.png", scene);
+
+    return pbr;
 }
 
 //***/PG */
