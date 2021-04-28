@@ -1,4 +1,4 @@
-const canvas = document.getElementById("rCanvasLP"); // Get the canvas element
+const canvas = document.getElementById("renderCanvas"); // Get the canvas element
 const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
 
 //***PG */
@@ -113,18 +113,41 @@ function createPointLight(scene, position)
 
     const pLight = new BABYLON.PointLight(
         "pLight",
-        new BABYLON.Vector3(5, 10, -5),
+        position,
         scene
     );
 
     // Light colors
-    pLight.diffuse = new BABYLON.Color3(0.53, 0.66, 0.74);
-    pLight.specular = new BABYLON.Color3(0.83, 0.86, 0.89);
+    // pLight.diffuse = new BABYLON.Color3(0.53, 0.66, 0.74);
+    // pLight.specular = new BABYLON.Color3(0.83, 0.86, 0.89);
 
     return pLight;
 }
 
-function createEnvironment(scene)
+/**
+ * 
+ * @param {*} scene 
+ * @param {*} createSB // bool (create SkyBox (SB)?)
+ * @param {*} SBSize // number
+ * @param {*} SBColor // Color3
+ * @param {*} createGR // bool (create ground (GR)?)
+ * @param {*} GRSize // number
+ * @param {*} GRColor //Color3
+ * @param {*} enableGRShadow // bool
+ * @param {*} GRYBias // number
+ * @param {*} envText // string (path file.env)
+ * @returns 
+ */
+function createEnvironment(scene, 
+    createSB, 
+    SBSize, 
+    SBColor, 
+    createGR,
+    GRSize,
+    GRColor,
+    enableGRShadow,
+    GRYBias,
+    envText = '')
 {
     const env = scene.createDefaultEnvironment({
         createSkybox: true,
@@ -145,6 +168,7 @@ function importMeshes()
 
 }
 
+//[WIP]
 function createPBRGlass(scene)
 {
     //Create PBR material
@@ -158,6 +182,7 @@ function createPBRGlass(scene)
     return pbr;
 }
 
+//[WIP]
 function createPBRFromTextures(scene, albedo, bump, orm)
 {
     //Create and setup pbr material
