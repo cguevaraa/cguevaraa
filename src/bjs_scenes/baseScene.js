@@ -8,32 +8,25 @@ function createBaseScene () {
     // Scene
     const scene = new BABYLON.Scene(engine);
 
-    // Camera
-    const camera = createArcRotCamera(scene);
-    //camera.attachControl(canvas, false); //Set the last to false to avoid global zoom/scroll in page
+    // // Camera
+    // const camera = createArcRotCamera(scene);
+    // //camera.attachControl(canvas, false); //Set the last to false to avoid global zoom/scroll in page
 
-    // Lights
-    const dLight = createDirLight(scene);
-    const pLight = createPointLight(scene);
+    // // Lights
+    // const dLight = createDirLight(scene);
+    // const pLight = createPointLight(scene);
 
-    // Environment
-    const env = createEnvironment(scene);
+    // // Environment
+    // const env = createEnvironment(scene);
 
-    // Shadows
-    const shadowGenerator = new BABYLON.ShadowGenerator(2048, dLight);
-    shadowGenerator.useBlurExponentialShadowMap = true;
-
-    // Build a mathematical ground with its normal and an offset
-    //const groundData = new BABYLON.Plane(1, 1, 1, -1);
-    
-    const promises = [];
-
+    // // Shadows
+    // const shadowGenerator = new BABYLON.ShadowGenerator(2048, dLight);
+    // shadowGenerator.useBlurExponentialShadowMap = true;
 
     return scene;
-
 }
 
-function createArcRotCamera(scene)
+function createCamProductViz(scene)
 {
     // CAMERA
     const camera = new BABYLON.ArcRotateCamera(
@@ -44,44 +37,80 @@ function createArcRotCamera(scene)
         new BABYLON.Vector3(0, 1, 0),
         scene
     );
+    
+    //Apply zoom and pan tweaks
+    camera = tweakCam(camera);
 
-    // Some tweaks to limit the zoom and panning
+    return camera;
+}
+
+function tweakCam(camera){
+    // Some tweaks to limit the zoom and pan
     camera.minZ = 0.1;
     camera.wheelDeltaPercentage = 0.01;
     camera.upperRadiusLimit = 10;
     camera.lowerRadiusLimit = 2;
     camera._panningMouseButton = null;
+    
+    return camera;
+}
 
-    // Create a 'sphere' to use as camera target
-    const camTarget = BABYLON.MeshBuilder.CreateSphere(
-        "camTarget",
-        { diameter: 0.0001, segments: 4 },
-        scene
-    );
-    // Move the camTarget upward
-    camTarget.position.y = 1;
+function setCameraTarget(scene, camera, target){
+    // // Create a 'sphere' to use as camera target
+    // const camTarget = BABYLON.MeshBuilder.CreateSphere(
+    //     "camTarget",
+    //     { diameter: 0.0001, segments: 4 },
+    //     scene
+    // );
+    // // Move the camTarget upward
+    // camTarget.position.y = 1;
     //Set camera target
-    camera.target = camTarget.absolutePosition;
+    camera.target = target.absolutePosition;
 
     return camera;
 }
 
-function createDirLight(scene)
+/**
+ * 
+ * @param {*} scene //The scene to add the light to
+ * @param {*} position //Vector3
+ * @returns
+ */
+
+function createDirLight(scene, position)
 {
+    // const dLight = new BABYLON.DirectionalLight(
+    //     "dLight",
+    //     new BABYLON.Vector3(0.02, -0.05, -0.05),
+    //     scene
+    // );
+
     const dLight = new BABYLON.DirectionalLight(
         "dLight",
-        new BABYLON.Vector3(0.02, -0.05, -0.05),
+        position,
         scene
     );
 
-    // Directional light orientation
-    dLight.position = new BABYLON.Vector3(0, 20, 0);
+    // // Directional light orientation
+    // dLight.position = new BABYLON.Vector3(0, 20, 0);
 
     return dLight;
 }
 
-function createPointLight(scene)
+/**
+ * 
+ * @param {*} scene 
+ * @param {*} position //Vector3
+ * @returns 
+ */
+function createPointLight(scene, position)
 {
+    // const pLight = new BABYLON.PointLight(
+    //     "pLight",
+    //     new BABYLON.Vector3(5, 10, -5),
+    //     scene
+    // );
+
     const pLight = new BABYLON.PointLight(
         "pLight",
         new BABYLON.Vector3(5, 10, -5),
