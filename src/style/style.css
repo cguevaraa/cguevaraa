@@ -94,3 +94,15 @@ ul.topnav li a {
       font-size: 0.8em;
     }
 }
+
+#mail{
+    /* position: relative; */
+    color:whitesmoke;
+    letter-spacing: 1px;
+}
+
+@media screen and (max-width: 600px) {
+    a {
+      font-size: 0.8em;
+    }
+}
