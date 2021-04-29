@@ -7,6 +7,7 @@ body {
     background-color: rgb(37, 46, 46);
 }
 
+/* 3D */
 #renderCanvas {
     width: 100%;
     height: 100%;
@@ -15,6 +16,7 @@ body {
     z-index: 1
 }
 
+/* NAVBAR */
 ul.topnav {
   top:3%;
   left:1%;
@@ -23,7 +25,7 @@ ul.topnav {
   padding: 0;
   overflow: hidden;
   background-color: rgb(10, 10, 10);
-  z-index: 2;
+  z-index: 10;
 }
 
 ul.topnav li {
@@ -44,3 +46,28 @@ ul.topnav li a {
     ul.topnav li.right, 
     ul.topnav li {float: none;}
   }
+
+/* VISIT CARD */
+#visitcardContainer{
+    top:40%;
+    width:100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    margin: 0 auto;
+    z-index: 2;
+    text-align: center; 
+    transform: translate(0,-100%);
+    font-family: "Lucida Console", "Courier New"; 
+    letter-spacing: 5px;
+    /* text-transform: uppercase; font-size: 16px; */
+    min-height: 10em;
+    vertical-align: middle;
+}
+
+#profilPhoto{
+    width: calc(6em + 7vw);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
