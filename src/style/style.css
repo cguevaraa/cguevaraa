@@ -1,19 +1,11 @@
-/* body {
+body {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
     font-family: "Lucida Console", "Courier New", monospace;
     background-color: rgb(37, 46, 46);
-} */
-
-/* #bgContainer {
-    width: 100%;
-    height: 100%;
-    background-color: beige;
-    border: 1px solid rgb(0, 16, 156);
-    position: absolute;
-    margin: 0 auto; } */
+}
 
 #renderCanvas {
     width: 100%;
@@ -23,12 +15,6 @@
     z-index: 1
 }
 
-#navbarContainer {
-    position: absolute;
-    margin: 0 auto;
-    z-index: 2;
-    background: rgb(183, 0, 255); }
-
 ul.topnav {
   top:3%;
   left:1%;
@@ -37,6 +23,7 @@ ul.topnav {
   padding: 0;
   overflow: hidden;
   background-color: rgb(10, 10, 10);
+  z-index: 2;
 }
 
 ul.topnav li {
@@ -52,3 +39,8 @@ ul.topnav li a {
   text-decoration: none;
 }
 
+/* Make the top navbar responsive */
+@media screen and (max-width: 600px) {
+    ul.topnav li.right, 
+    ul.topnav li {float: none;}
+  }
