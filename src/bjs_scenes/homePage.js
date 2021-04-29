@@ -11,10 +11,10 @@ function createBaseScene () {
         "dragonRocks.glb",
         ];
 
-    // Scene
+    //Scene
     const scene = new BABYLON.Scene(engine);
 
-    // Camera
+    //Camera
     let camera = new BABYLON.ArcRotateCamera(
         "camera",
         Math.PI / 3,
@@ -32,7 +32,7 @@ function createBaseScene () {
     pbr.subSurface.indexOfRefraction = 1.5;
     pbr.subSurface.tintColor = new BABYLON.Color3(0, 0, 0);
     
-    // This targets the camera to scene origin with Y bias: +1
+    //This targets the camera to scene origin with Y bias: +1
     //camera.setTarget(new BABYLON.Vector3(0,1,0));
     camera.attachControl(canvas, false); //Set the last to false to avoid global zoom/scroll in page
 
@@ -43,14 +43,14 @@ function createBaseScene () {
     camera.lowerRadiusLimit = 2;
     camera._panningMouseButton = null;
 
-    // Create a 'sphere' to use as camera target
+    //Create a 'sphere' to use as camera target
     const camTarget = BABYLON.MeshBuilder.CreateSphere(
         "camTarget",
         { diameter: 0.0001, segments: 4 },
         scene
     );
 
-    // Move the camTarget upward
+    //Move the camTarget upward
     camTarget.position.y = 1;
     // Set camera target
     camera.target = camTarget.absolutePosition;
@@ -62,7 +62,7 @@ function createBaseScene () {
         scene
     );
 
-    // Directional light orientation
+    //Directional light orientation
     dLight.position = dLightOrientation;
 
     //Point light
@@ -72,7 +72,7 @@ function createBaseScene () {
         lightPos,
         scene
     );
-    // Light colors
+    //Light colors
     pLight.diffuse = new BABYLON.Color3(0.53, 0.66, 0.74);
     pLight.specular = new BABYLON.Color3(0.83, 0.86, 0.89);
 
@@ -140,15 +140,11 @@ function createBaseScene () {
         // console.log(m);
     
         // prepareButton(m);
-    
-
     }
-
 
     for (let index = 0; index < meshesToLoad.length; index++) {
         loadMeshes("", "/src/3Dmodels/", meshesToLoad[index]);
     }
-
 
     return scene;
 }
@@ -166,79 +162,6 @@ function createCamProductViz(scene)
     );
 
     return cam;
-}
-
-/**
- * 
- * @param {*} scene 
- * @param {*} createSB // bool (create SkyBox (SB)?)
- * @param {*} SBSize // number
- * @param {*} SBColor // Color3
- * @param {*} createGR // bool (create ground (GR)?)
- * @param {*} GRSize // number
- * @param {*} GRColor //Color3
- * @param {*} enableGRShadow // bool
- * @param {*} GRYBias // number
- * @param {*} envText // string (path file.env)
- * @returns 
- */
-function createEnvironment(scene, 
-    createSB, 
-    SBSize, 
-    SBColor, 
-    createGR,
-    GRSize,
-    GRColor,
-    enableGRShadow,
-    GRYBias,
-    envText = '')
-{
-    const env = scene.createDefaultEnvironment({
-        createSkybox: true,
-        skyboxSize: 150,
-        skyboxColor: new BABYLON.Color3(0.01,0.01,0.01),
-        environmentTexture: envText,
-        createGround: true,
-        groundSize: 100,
-        groundColor: new BABYLON.Color3(0.02,0.02,0.02),
-        enableGroundShadow: true,
-        groundYBias: 0.875,
-    });
-
-    return env;
-}
-
-//[WIP]
-function createPBRGlass(scene)
-{
-    //Create PBR material
-    let pbr = new BABYLON.PBRMaterial("pbr", scene);
-    pbr.metallic = 0.0;
-    pbr.roughness = 0;      
-    pbr.subSurface.isRefractionEnabled = true;
-    pbr.subSurface.indexOfRefraction = 1.5;
-    pbr.subSurface.tintColor = new BABYLON.Color3(0, 0, 0);
-
-    return pbr;
-}
-
-//[WIP]
-function createPBRFromTextures(scene, albedo, bump, orm)
-{
-    //Create and setup pbr material
-    const pbr = new BABYLON.PBRMaterial("pbr", scene);
-
-    pbr.useAmbientOcclusionFromMetallicTextureRed = true;
-    pbr.useRoughnessFromMetallicTextureGreen = true;
-    pbr.useMetallnessFromMetallicTextureBlue = true;
-    pbr.useRoughnessFromMetallicTextureAlpha = false;
-
-    pbr.albedoTexture = new BABYLON.Texture(albedo, scene);
-    pbr.bumpTexture = new BABYLON.Texture(bump, scene);
-    pbr.metallicTexture = new BABYLON.Texture(orm, scene);
-    //pbr.bumpTexture = new BABYLON.Texture("src/3Dmodels/textures/TX_golfBall_nrm_invr.png", scene);
-
-    return pbr;
 }
 
 //***/PG */
