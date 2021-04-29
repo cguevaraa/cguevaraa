@@ -99,7 +99,7 @@ function createBaseScene () {
     * @param {*} fileName
     */
     async function loadMeshes(meshNames, rootUrl, fileName) {
-    var model = await BABYLON.SceneLoader.ImportMeshAsync(
+    let model = await BABYLON.SceneLoader.ImportMeshAsync(
         meshNames,
         rootUrl,
         fileName
@@ -117,34 +117,46 @@ function createBaseScene () {
         element.material = pbr
         );
     
-        // // On pick interpolations
-        // const prepareButton = function(mesh) {
-        //     mesh.actionManager = new BABYLON.ActionManager(scene);//create collision and add to scene
+        // On pick interpolations
+        const prepareButton = function(mesh) {
+            mesh.actionManager = new BABYLON.ActionManager(scene);//create collision and add to scene
                 
-        //     //what happens when the mesh is touched
-        //     mesh.actionManager.registerAction(
-        //         new BABYLON.InterpolateValueAction(
-        //             BABYLON.ActionManager.OnPickTrigger,
-        //             mesh.material.subSurface,
-        //             'tintColor',
-        //             BABYLON.Color3.Teal(),
-        //             // color,
-        //             1000
-        //         )
-        //     );
-        // };
+            //what happens when the mesh is touched
+            mesh.actionManager.registerAction(
+                new BABYLON.InterpolateValueAction(
+                    BABYLON.ActionManager.OnPickTrigger,
+                    mesh.material.subSurface,
+                    'tintColor',
+                    BABYLON.Color3.Teal(),
+                    // color,
+                    1000
+                )
+            );
+        };
         
-        // const m = model.meshes[1];
-        // m.actionManager = new BABYLON.ActionManager(scene);
+        const m = model.meshes[1];
+        m.actionManager = new BABYLON.ActionManager(scene);
     
-        // console.log(m);
+        console.log(m);
     
-        // prepareButton(m);
+        prepareButton(m);
     }
 
     for (let index = 0; index < meshesToLoad.length; index++) {
         loadMeshes("", "/src/3Dmodels/", meshesToLoad[index]);
     }
+
+    //Auxiliar variable to animate materials
+    //var a = 0;
+    
+    // Code in this function will run ~60 times per second
+    scene.registerBeforeRender(function () {
+        //Slowly rotate camera
+        camera.alpha += (0.00001 * scene.getEngine().getDeltaTime());
+    //     a += 0.005;
+    //     pbr.subSurface.tintColor.g = Math.cos(a) * 0.5 + 0.5;
+    //     pbr.subSurface.tintColor.b = pbr.subSurface.tintColor.g;
+        });
 
     return scene;
 }
