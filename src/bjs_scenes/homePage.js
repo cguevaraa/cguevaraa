@@ -30,7 +30,7 @@ function createBaseScene () {
     pbr.roughness = 0;      
     pbr.subSurface.isRefractionEnabled = true;
     pbr.subSurface.indexOfRefraction = 1.5;
-    pbr.subSurface.tintColor = new BABYLON.Color3(0, 0, 0);
+    pbr.subSurface.tintColor = new BABYLON.Color3(0.01, 0.25, 0.1);
     
     //This targets the camera to scene origin with Y bias: +1
     //camera.setTarget(new BABYLON.Vector3(0,1,0));
