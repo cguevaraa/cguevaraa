@@ -30,7 +30,7 @@ function createBaseScene () {
     pbr.roughness = 0;      
     pbr.subSurface.isRefractionEnabled = true;
     pbr.subSurface.indexOfRefraction = 1.5;
-    pbr.subSurface.tintColor = new BABYLON.Color3(0.01, 0.25, 0.1);
+    pbr.subSurface.tintColor = new BABYLON.Color3(0.0, 0.3, 0.1);
     
     //This targets the camera to scene origin with Y bias: +1
     //camera.setTarget(new BABYLON.Vector3(0,1,0));
@@ -51,7 +51,7 @@ function createBaseScene () {
     );
 
     //Move the camTarget upward
-    camTarget.position.y = 1;
+    camTarget.position.y = 1.1;
     // Set camera target
     camera.target = camTarget.absolutePosition;
 
@@ -89,7 +89,7 @@ function createBaseScene () {
     groundSize: 100,
     groundColor: new BABYLON.Color3(0.02,0.02,0.02),
     enableGroundShadow: true,
-    groundYBias: 0.875,
+    groundYBias: 0.975,
     });
     
     /**
