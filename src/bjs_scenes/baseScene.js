@@ -9,11 +9,12 @@ function createBaseScene () {
     const scene = new BABYLON.Scene(engine);
 
     // // Camera
-    // const camera = createArcRotCamera(scene);
+    // const camera = createCamProductViz(scene);
     // //camera.attachControl(canvas, false); //Set the last to false to avoid global zoom/scroll in page
 
     // // Lights
-    // const dLight = createDirLight(scene);
+    // let lightPos = new BABYLON.Vector3(0.02, -0.05, -0.05)
+    // const dLight = createDirLight(scene, lightPos);
     // const pLight = createPointLight(scene);
 
     // // Environment
@@ -29,7 +30,7 @@ function createBaseScene () {
 function createCamProductViz(scene)
 {
     // CAMERA
-    const camera = new BABYLON.ArcRotateCamera(
+    let camera = new BABYLON.ArcRotateCamera(
         "camera",
         Math.PI / 3,
         Math.PI / 1.7,
