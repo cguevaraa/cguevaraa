@@ -49,15 +49,16 @@ ul.topnav li a {
 
 /* VISIT CARD */
 #visitcardContainer{
-    top:40%;
-    width:100%;
+    top: 25%;
+    width: 100%;
+    margin-top: 5vh;
     margin-left: auto;
     margin-right: auto;
     position: absolute;
     margin: 0 auto;
     z-index: 2;
     text-align: center; 
-    transform: translate(0,-100%);
+    /* transform: translate(0,-100%); */
     font-family: "Lucida Console", "Courier New"; 
     letter-spacing: 5px;
     /* text-transform: uppercase; font-size: 16px; */
@@ -70,4 +71,10 @@ ul.topnav li a {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+#textContainer{
+    margin-left: 10vw;
+    margin-right: 10vw;
+    background-color: blueviolet;
 }
