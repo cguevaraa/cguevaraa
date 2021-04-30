@@ -125,14 +125,14 @@ var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), 
     //Setup environment
 var env = scene.createDefaultEnvironment({
   createSkybox: true,
-  skyboxSize: 150,
+  skyboxSize: 10,
   skyboxColor: new BABYLON.Color3(0.0375,0.0375,0.0375),
   environmentTexture: "/src/env/lilienstein.env",
   createGround: true,
   groundSize: 10,
   groundColor: new BABYLON.Color3(0.7,0.5,0.5),
   enableGroundShadow: true,
-  groundYBias: 1,
+  groundYBias: 1.5,
 });
     
     /**
