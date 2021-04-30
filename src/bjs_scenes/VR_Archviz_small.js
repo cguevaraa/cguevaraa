@@ -54,6 +54,7 @@ function createBaseScene () {
     camera.upperRadiusLimit = 20;
     camera.lowerRadiusLimit = 2;
     camera._panningMouseButton = 2;
+    camera.upperBetaLimit = Math.PI/2;
 
     //Create a 'sphere' to use as camera target
     const camTarget = BABYLON.MeshBuilder.CreateSphere(
