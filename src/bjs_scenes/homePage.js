@@ -39,7 +39,7 @@ function createBaseScene () {
 
     // Some tweaks to limit the zoom and pan
     camera.minZ = 0.1;
-    camera.wheelDeltaPercentage = 0.01;
+    camera.wheelDeltaPercentage = 0.001;
     camera.upperRadiusLimit = 10;
     camera.lowerRadiusLimit = 2;
     camera._panningMouseButton = null;
@@ -92,8 +92,6 @@ function createBaseScene () {
     enableGroundShadow: true,
     groundYBias: 0.975,
     });
-    
-    let p;
 
     /**
     * ASYNC/AWAIT Function to load a model into the scene
@@ -119,8 +117,6 @@ function createBaseScene () {
         model.meshes.forEach((element) =>
         element.material = pbr
         );
-
-        let count = 0;
     
         // On pick interpolations
         const onPointerColor = function(mesh) {
@@ -133,7 +129,7 @@ function createBaseScene () {
                     mesh.material.subSurface,
                     'tintColor',
                     new BABYLON.Color3.Teal(),
-                    500
+                    1000
                 )
             );
 
@@ -152,7 +148,7 @@ function createBaseScene () {
                     BABYLON.ActionManager.OnPickTrigger,
                     mesh.material.subSurface,
                     'tintColor',
-                    new BABYLON.Color3(0.3, 0.0, 0.0),
+                    new BABYLON.Color3(0.5, 0.5, 0.5),
                     1000
                 )
             ).then(
@@ -160,7 +156,7 @@ function createBaseScene () {
                     BABYLON.ActionManager.OnPickTrigger,
                     mesh.material.subSurface,
                     'tintColor',
-                    new BABYLON.Color3(0.8, 0.0, 0.0),
+                    new BABYLON.Color3(0.6, 0.0, 0.0),
                     1000
                 )  
             );   
@@ -178,19 +174,11 @@ function createBaseScene () {
     for (let index = 0; index < meshesToLoad.length; index++) {
         loadMeshes("", "/src/3Dmodels/", meshesToLoad[index]);
     }
-
-    //randomNumber = Math.random();
-    console.log(p);
-    //Auxiliar variable to animate materials
-    //var a = 0;
     
     // Code in this function will run ~60 times per second
     scene.registerBeforeRender(function () {
         //Slowly rotate camera
         camera.alpha += (0.00001 * scene.getEngine().getDeltaTime());
-    //     a += 0.005;
-    //     pbr.subSurface.tintColor.g = Math.cos(a) * 0.5 + 0.5;
-    //     pbr.subSurface.tintColor.b = pbr.subSurface.tintColor.g;
         });
 
     return scene;

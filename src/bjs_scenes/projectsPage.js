@@ -8,7 +8,7 @@ function createBaseScene () {
     let dlightPosition = new BABYLON.Vector3(0.02, -0.05, -0.05);
     let dLightOrientation = new BABYLON.Vector3(0, 20, 0);
     const meshesToLoad = [
-        // "rocks.glb",
+        "golfBall.glb",
         ];
 
     //Scene
@@ -24,13 +24,13 @@ function createBaseScene () {
         scene
     );
 
-    //Create PBR material
-    const pbr = new BABYLON.PBRMaterial("pbr", scene);
-    pbr.metallic = 0.0;
-    pbr.roughness = 0;      
-    pbr.subSurface.isRefractionEnabled = true;
-    pbr.subSurface.indexOfRefraction = 1.5;
-    pbr.subSurface.tintColor = new BABYLON.Color3(0.0, 0.5, 0.1);
+    // //Create PBR material
+    // const pbr = new BABYLON.PBRMaterial("pbr", scene);
+    // pbr.metallic = 0.0;
+    // pbr.roughness = 0;      
+    // pbr.subSurface.isRefractionEnabled = true;
+    // pbr.subSurface.indexOfRefraction = 1.5;
+    // pbr.subSurface.tintColor = new BABYLON.Color3(0.0, 0.5, 0.1);
     
     //This targets the camera to scene origin with Y bias: +1
     //camera.setTarget(new BABYLON.Vector3(0,1,0));
@@ -92,7 +92,21 @@ function createBaseScene () {
     groundYBias: 0.975,
     });
     
-    let p;
+    // const golfBall = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter: 2, segments: 16}, scene);
+
+    // //Create and setup pbr material
+    // const pbr_golfBall = new BABYLON.PBRMaterial("pbr_golfBall", scene);
+
+    // pbr_golfBall.useAmbientOcclusionFromMetallicTextureRed = true;
+    // pbr_golfBall.useRoughnessFromMetallicTextureGreen = true; 
+    // pbr_golfBall.useMetallnessFromMetallicTextureBlue = true;
+    // pbr_golfBall.useRoughnessFromMetallicTextureAlpha = false;
+
+    // pbr_golfBall.albedoTexture = new BABYLON.Texture("src/3Dmodels/textures/TX_golfBall_albedo.png", scene);
+    // pbr_golfBall.bumpTexture = new BABYLON.Texture("src/3Dmodels/textures/TX_golfBall_nrm_invr.png", scene);
+    // pbr_golfBall.metallicTexture = new BABYLON.Texture("src/3Dmodels/textures/TX_golfBall_orm.png", scene);;
+
+    // golfBall.material = pbr_golfBall;
 
     /**
     * ASYNC/AWAIT Function to load a model into the scene
@@ -107,21 +121,22 @@ function createBaseScene () {
         fileName
         );
 
-        console.log(fileName);
+        console.log("Loaded: " + fileName);
 
         //Add shadow caster to each mesh within model
         model.meshes.forEach((element) =>
         shadowGenerator.addShadowCaster(element, true)
         );
 
-        //Add the material we've created to each mesh
-        model.meshes.forEach((element) =>
-        element.material = pbr
-        );
+        // //Add the material we've created to each mesh
+        // model.meshes.forEach((element) =>
+        // element.material = pbr
+        // );
 
-        let count = 0;
+
+
     
-        // On pick interpolations
+        // On pick actions
         const onPointerColor = function(mesh) {
             mesh.actionManager = new BABYLON.ActionManager(scene);
                 
@@ -129,43 +144,54 @@ function createBaseScene () {
             mesh.actionManager.registerAction(
                 new BABYLON.InterpolateValueAction(
                     BABYLON.ActionManager.OnPointerOverTrigger,
-                    mesh.material.subSurface,
-                    'tintColor',
+                    mesh.material,
+                    'emissiveColor',
                     new BABYLON.Color3.Teal(),
-                    500
+                    1
                 )
             );
 
             mesh.actionManager.registerAction(
                 new BABYLON.InterpolateValueAction(
                     BABYLON.ActionManager.OnPointerOutTrigger,
-                    mesh.material.subSurface,
-                    'tintColor',
-                    new BABYLON.Color3(0.0, 0.5, 0.1),
-                    1000
+                    mesh.material,
+                    'emissiveColor',
+                    new BABYLON.Color3.Black(),
+                    1
+                )
+            );
+
+            mesh.actionManager.registerAction(
+                new BABYLON.ExecuteCodeAction(
+                    {
+                        trigger: BABYLON.ActionManager.OnPickTrigger,
+                    },
+                    function () { window.location.href = "golfSim.html"; },
+                    BABYLON.Condition(mesh.name === "golfBall"),
                 )
             );
             
-            mesh.actionManager.registerAction(
-                new BABYLON.InterpolateValueAction(
-                    BABYLON.ActionManager.OnPickTrigger,
-                    mesh.material.subSurface,
-                    'tintColor',
-                    new BABYLON.Color3(0.3, 0.0, 0.0),
-                    1000
-                )
-            ).then(
-                new BABYLON.InterpolateValueAction(
-                    BABYLON.ActionManager.OnPickTrigger,
-                    mesh.material.subSurface,
-                    'tintColor',
-                    new BABYLON.Color3(0.8, 0.0, 0.0),
-                    1000
-                )  
-            );   
+        //     mesh.actionManager.registerAction(
+        //         new BABYLON.InterpolateValueAction(
+        //             BABYLON.ActionManager.OnPickTrigger,
+        //             mesh.material.subSurface,
+        //             'tintColor',
+        //             new BABYLON.Color3(0.3, 0.0, 0.0),
+        //             1000
+        //         )
+        //     ).then(
+        //         new BABYLON.InterpolateValueAction(
+        //             BABYLON.ActionManager.OnPickTrigger,
+        //             mesh.material.subSurface,
+        //             'tintColor',
+        //             new BABYLON.Color3(0.8, 0.0, 0.0),
+        //             1000
+        //         )  
+        //     );   
         };            
         
         const m = model.meshes[1];
+        console.log("Mesh name: " + m.name);
 
         onPointerColor(m);
     
@@ -175,39 +201,16 @@ function createBaseScene () {
 
 
     for (let index = 0; index < meshesToLoad.length; index++) {
-        loadMeshes("", "/src/3Dmodels/", meshesToLoad[index]);
+        loadMeshes("", "/src/3Dmodels/projects/", meshesToLoad[index]);
     }
-
-    //randomNumber = Math.random();
-    console.log(p);
-    //Auxiliar variable to animate materials
-    //var a = 0;
     
     // Code in this function will run ~60 times per second
     scene.registerBeforeRender(function () {
         //Slowly rotate camera
-        camera.alpha += (0.00001 * scene.getEngine().getDeltaTime());
-    //     a += 0.005;
-    //     pbr.subSurface.tintColor.g = Math.cos(a) * 0.5 + 0.5;
-    //     pbr.subSurface.tintColor.b = pbr.subSurface.tintColor.g;
+        camera.alpha += (0.000005 * scene.getEngine().getDeltaTime());
         });
 
     return scene;
-}
-
-function createCamProductViz(scene)
-{
-    // CAMERA
-    const cam = new BABYLON.ArcRotateCamera(
-        "camera",
-        Math.PI / 3,
-        Math.PI / 1.7,
-        4,
-        new BABYLON.Vector3(0, 1, 0),
-        scene
-    );
-
-    return cam;
 }
 
 //***/PG */

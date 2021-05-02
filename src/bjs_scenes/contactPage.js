@@ -151,7 +151,7 @@ function createBaseScene () {
                     BABYLON.ActionManager.OnPickTrigger,
                     mesh.material.subSurface,
                     'tintColor',
-                    new BABYLON.Color3(0.3, 0.0, 0.0),
+                    new BABYLON.Color3(0.2, 0.0, 0.5),
                     1000
                 )
             ).then(
