@@ -68,7 +68,7 @@ var toLoad = meshesToLoad.length;
       }
 
       for (var index = 0; index < meshesToLoad.length; index++) {
-              loadMeshes("", "/src/models/", meshesToLoad[index]);
+              loadMeshes("", "/src/3Dmodels/VR_Archviz/", meshesToLoad[index]);
       }
 
 
