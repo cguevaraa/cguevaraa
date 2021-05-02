@@ -8,7 +8,8 @@ function createBaseScene () {
     let dlightPosition = new BABYLON.Vector3(0.02, -0.05, -0.05);
     let dLightOrientation = new BABYLON.Vector3(0, 20, 0);
     const meshesToLoad = [
-        "dragonRocks.glb",
+        "rocks.glb",
+        "japanDragon.glb",
         ];
 
     //Scene
@@ -167,7 +168,7 @@ function createBaseScene () {
 
 
     for (let index = 0; index < meshesToLoad.length; index++) {
-        loadMeshes("dragonRocks", "/src/3Dmodels/", meshesToLoad[index]);
+        loadMeshes("", "/src/3Dmodels/", meshesToLoad[index]);
     }
 
     //randomNumber = Math.random();
