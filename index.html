@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="src/style/styleLP.css" />
+    <link rel="stylesheet" type="text/css" href="src/style/style.css" />
     <script src="https://cdn.babylonjs.com/babylon.js"></script>
     <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
     <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
@@ -12,29 +12,35 @@
 </head>
 <body>
     <!-- 3D background -->
-    <canvas id="rCanvasLP" touch-action="none"></canvas> <!-- touch-action="none" for best results from PEP -->
-    <script src="/src/bjs_scenes/landingPage.js"></script>
-    <div>
-            <!-- HEADER -->
+    <div id="bgContainer">
+
+        <canvas id="renderCanvas" touch-action="none"></canvas> <!-- touch-action="none" for best results from PEP -->
+        <script src="/src/bjs_scenes/homePage.js"></script>
+        <!-- <script src="/src/bjs_scenes/landingPage.js"></script> -->
+
+        <div>
             <ul class="topnav">
-                <li><a href="#index">About me</a></li>
+                <li><a href="#">About me</a></li>
                 <li><a href="src/projects.html">Projects</a></li>
                 <li><a href="src/contact.html">Contact</a></li>
-              </ul>
-              <!-- <div style="padding:0 16px;"> -->
-    </div>
-    <div id="centerElement">
-        <div class="prf_container">
-        <IMG class="profil" src="/src/img/roundPhoto.png" alt="My face should be here...">
-            <p id="hello">Hello visitor! Welcome to my page!</p>
-            <p id="prf_text">
-                My name is Christian, I'm a 3D technical artist with
-                a strong interest in coding and education.
-                I'm passionate about creating fun and appealing
-                interactive experiences. At the tab <i>projects</i> you will find some of my
-                works in both sides: 3D art and code (my 2nd and 3rd names... :D). Enjoy!
-            </p>
+            </ul>
         </div>
+
+        <div id="visitcardContainer">
+            <IMG id="profilPhoto" src="/src/img/CG_glitch.gif" alt="My face should be here...">
+                <div>
+                    <p id="vc_text">
+                        <b>Hello visitor! Welcome to my page!</b></br></br>
+                        My name is Christian, I'm a 3D technical artist with
+                        a strong interest in <i>seriuos games</i>, simulation and training.
+                        I'm passionate about creating fun and appealing
+                        interactive experiences. At the tab <i>projects</i> you will find some of my
+                        works on both sides: 3D art and code (my 2nd and 3rd names... :D). Hope you'll enjoy!
+                    </p>
+                </div>
+        </div>
+
     </div>
+
 </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style/styleCP.css" />
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
     <script src="https://cdn.babylonjs.com/babylon.js"></script>
     <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
     <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
@@ -12,23 +12,31 @@
 </head>
 <body>
     <!-- 3D background -->
-    <canvas id="rCanvasCP" touch-action="none"></canvas> <!-- touch-action="none" for best results from PEP -->
-    <script src="/src/bjs_scenes/contactPage.js"></script>
-    <div>
-            <!-- HEADER -->
+    <div id="bgContainer">
+
+        <canvas id="renderCanvas" touch-action="none"></canvas> <!-- touch-action="none" for best results from PEP -->
+        <script src="/src/bjs_scenes/testScene.js"></script>
+        <!-- <script src="/src/bjs_scenes/landingPage.js"></script> -->
+
+        <div>
             <ul class="topnav">
                 <li><a href="../index.html">About me</a></li>
                 <li><a href="projects.html">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-              </ul>
-              <!-- <div style="padding:0 16px;"> -->
-    </div>
-    <div id="centerElement">
-        <div class="prf_container">
-        <IMG class="profil" src="/src/img/paper_plane_PNG20.png" alt="Normally, there's an image here...">
-            <p id="prf_text">You can reach me here:</p>
-            <a href="mailto:christian.e.guevara@gmail.com" style="color:whitesmoke">christian.e.guevara@gmail.com</a>
+                <li><a href="#">Contact</a></li>
+            </ul>
         </div>
+
+        <div id="visitcardContainer">
+            <IMG id="profilPhoto" src="img/paperPlane.png" alt="Normally, there's an image here...">
+                <div>
+                    <p id="vc_text">
+                        You can reach me here:</br></br>
+                        <a href="mailto:christian.e.guevara@gmail.com" id="mail">christian.e.guevara@gmail.com</a>
+                    </p>
+                </div>
+        </div>
+
     </div>
+
 </body>
 </html>

@@ -10,7 +10,7 @@ var vrCam = new BABYLON.FreeCamera("vrCam", new BABYLON.Vector3(0, 1, 1), scene)
 vrCam.setTarget(BABYLON.Vector3.Zero());
 vrCam.attachControl(canvas, true);
 vrCam.maxZ = 50000;
-//vrCam.minZ = 0.1;
+vrCam.minZ = 0.1;
 
 var meshesToLoad = [
         "SM_Bath_F0.glb",
@@ -77,7 +77,7 @@ var env = scene.createDefaultEnvironment({
         createSkybox: true,
         skyboxSize: 150,
         skyboxColor: new BABYLON.Color3(0.0375,0.0375,0.0375),
-        environmentTexture: "/src/env/lilienstein.env",
+        environmentTexture: "src/env/lilienstein.env",
         createGround: true,
         groundSize: 10,
         groundColor: new BABYLON.Color3(0.7,0.5,0.5),

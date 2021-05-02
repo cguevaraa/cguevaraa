@@ -7,32 +7,33 @@ body {
     background-color: rgb(37, 46, 46);
 }
 
-#rCanvasLP {
+/* 3D */
+#renderCanvas {
     width: 100%;
     height: 100%;
     touch-action: none;
+    position: absolute;
+    z-index: 1
 }
 
-/* #content {
-    position:relative;
-  } */
-
+/* NAVBAR */
 ul.topnav {
-  /* list-style-type: none; */
-
+  top:3%;
+  left:1%;
+  position:absolute;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: rgb(36, 35, 35);
+  background-color: rgb(10, 10, 10);
+  z-index: 10;
 }
 
 ul.topnav li {
-    /* list-style-type: none; */
+    list-style-type: none;
     float: left;
 }
 
 ul.topnav li a {
-    /* list-style-type: none; */
   display: block;
   color: white;
   text-align: center;
@@ -40,205 +41,68 @@ ul.topnav li a {
   text-decoration: none;
 }
 
-ul.topnav li a:hover:not(.active) {background-color: #111;}
-
-ul.topnav li a.active {background-color: #4CAF50;}
-
-ul.topnav li.right {float: right;}
-
+/* Make the top navbar responsive */
 @media screen and (max-width: 600px) {
-  ul.topnav li.right, 
-  ul.topnav li {float: none;}
+    ul.topnav li.right, 
+    ul.topnav li {float: none;}
+  }
+
+/* VISIT CARD */
+#visitcardContainer{
+    top: 10%;
+    width: 100%;
+    /* margin-top: 5vh; */
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    margin: 0 auto;
+    z-index: 2;
+
+    /* text-transform: uppercase; font-size: 16px; */
+    /* min-height: 10em;
+    vertical-align: middle; */
 }
 
-/* HEADER IMAGES */
-IMG.profil {
+#profilPhoto{
     width: calc(5em + 6vw);
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
 }
 
-IMG.contact {
-    width: calc(14em + 18vw);
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
-}
+/* #textContainer{
+    margin-left: 10vw;
+    margin-right: 10vw;
+} */
 
-IMG.projects {
-    width: calc(2em + 1vw);
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-}
-
-/* CONTAINERS */
-div.prf_container {
-    min-height: 10em;
-    /* display: table-cell; */
-    vertical-align: middle;
-    /* background-color: #333; */
-}
-
-div.ct_container {
-    min-height: 10em;
-    /* display: table-cell; */
-    vertical-align: middle;
-    /* background-color: #333; */
-}
-
-div.pr_container {
-    min-height: 10em;
-    /* display: table-cell; */
-    vertical-align: middle;
-    /* background-color: #333; */
-}
-
-/* TEXTS */
-p.prf_text {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
-    /* width: 50em; */
-    text-align: center;
-    font-size: calc(0.8em + 1vw);
-    font-weight: bold;
+#vc_text{
+    letter-spacing: 4px;
+    text-align: center; 
+    font-family: "Lucida Console", "Courier New"; 
     color: white;
-}
-
-p.prf_text2 {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
-    max-width: 40em;
+    /* font-size: 1.5vw; */
+    /* font-size: 1em; */
+    max-width: 60vw;
+    max-height: 3em;
     text-align: center;
-    /* font-size: 1vm; */
-    font-weight: lighter;
-    color: rgb(197, 215, 223);
 }
 
-p.ct_text {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
-    /* width: 50em; */
-    text-align: center;
-    font-size: calc(0.8em + 0.8vw);
-    font-weight: bold;
-    color: white;
+@media screen and (max-width: 600px) {
+    p {
+      font-size: 0.8em;
+    }
 }
 
-p.ct_text2 {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
-    max-width: 40em;
-    text-align: center;
-    /* font-size: calc(0.6em + 0.8vw); */
-    font-weight: lighter;
-    color: rgb(197, 215, 223);
+#mail{
+    /* position: relative; */
+    color:whitesmoke;
+    letter-spacing: 1px;
 }
 
-p.pr_text {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-    /* width: 50em; */
-    text-align: center;
-    font-size: calc(0.6em + 0.4vw);
-    /* font-weight: bold; */
-    color: white;
+@media screen and (max-width: 600px) {
+    a {
+      font-size: 0.8em;
+    }
 }
-
-h2.labels {
-    /* list-style-type: none; */
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 70px;
-    max-width: 40em;
-    text-align: center;
-    /* font-size: calc(0.6em + 0.8vw); */
-    font-weight: lighter;
-    color: rgb(197, 215, 223);
-}
-
-/* BABYLON */
-#renderCanvas {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    height: 100%;
-    touch-action: none;
-}
-
-ul.babylon_list{
-    list-style-type: none;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 60em;
-    text-align: center;
-    /* font-size: calc(0.6em + 0.8vw); */
-    font-weight: lighter;
-    color: rgb(197, 215, 223);
-}
-
-/* IFRAMES */
-ul.iframe_list{
-    /* display: block; */
-    margin-left: auto;
-    margin-right: auto;
-    list-style: none;
-    list-style-type: none;
-    /* margin-top: 0px; */
-    /* max-width: 40em; */
-    text-align: center;
-    /* font-size: calc(0.6em + 0.8vw); */
-    font-weight: lighter;
-    color: rgb(197, 215, 223);
-}
-
-/* ARCHVIZ */
-ul.archviz_list{
-    /* display: block; */
-    /* margin-left: auto;
-    margin-right: auto; */
-    list-style: none;
-    list-style-type: none;
-    /* margin-top: 0px; */
-    /* max-width: 40em; */
-    text-align: center;
-    /* font-size: calc(0.6em + 0.8vw); */
-    font-weight: lighter;
-    color: rgb(197, 215, 223);
-}
-
-IMG.archviz{
-    width: calc(15em + 30vw);
-    /* display: block; */
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-}
-
-/* REEL 2019 */
-ul.reel_list{
-    width: 640px;
-    height: 360px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 60em;
-    text-align: center;
-    /* font-size: calc(0.6em + 0.8vw); */
-    font-weight: lighter;
-    color: rgb(197, 215, 223);
-    list-style-type: none;
-}
-
-
