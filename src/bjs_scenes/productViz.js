@@ -83,7 +83,7 @@ var createScene = function () {
     skyboxSize: 150,
     skyboxColor: new BABYLON.Color3(0.0375,0.0375,0.0375),
     createGround: true,
-    groundSize: 100,
+    groundSize: 102,
     groundColor: new BABYLON.Color3(0.037,0.037,0.037),
     enableGroundShadow: true,
     groundYBias: 1,
