@@ -9,7 +9,6 @@ function createBaseScene () {
     let dLightOrientation = new BABYLON.Vector3(0, 20, 0);
     const meshesToLoad = [
         "rocks.glb",
-        "japanDragon.glb",
         ];
 
     //Scene
@@ -194,6 +193,21 @@ function createBaseScene () {
         });
 
     return scene;
+}
+
+function createCamProductViz(scene)
+{
+    // CAMERA
+    const cam = new BABYLON.ArcRotateCamera(
+        "camera",
+        Math.PI / 3,
+        Math.PI / 1.7,
+        4,
+        new BABYLON.Vector3(0, 1, 0),
+        scene
+    );
+
+    return cam;
 }
 
 //***/PG */
