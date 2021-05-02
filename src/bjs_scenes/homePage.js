@@ -30,7 +30,7 @@ function createBaseScene () {
     pbr.roughness = 0;      
     pbr.subSurface.isRefractionEnabled = true;
     pbr.subSurface.indexOfRefraction = 1.5;
-    pbr.subSurface.tintColor = new BABYLON.Color3(0.0, 0.3, 0.1);
+    pbr.subSurface.tintColor = new BABYLON.Color3(0.0, 0.5, 0.1);
     
     //This targets the camera to scene origin with Y bias: +1
     //camera.setTarget(new BABYLON.Vector3(0,1,0));
@@ -92,12 +92,14 @@ function createBaseScene () {
     groundYBias: 0.975,
     });
     
+    let p;
+
     /**
     * ASYNC/AWAIT Function to load a model into the scene
     * @param {*} meshNames | can be "" for any
     * @param {*} rootUrl
     * @param {*} fileName
-    */
+    */    
     async function loadMeshes(meshNames, rootUrl, fileName) {
     let model = await BABYLON.SceneLoader.ImportMeshAsync(
         meshNames,
@@ -116,36 +118,60 @@ function createBaseScene () {
         model.meshes.forEach((element) =>
         element.material = pbr
         );
+
+        let count = 0;
     
         // On pick interpolations
-        const prepareButton = function(mesh) {
-            mesh.actionManager = new BABYLON.ActionManager(scene);//create collision and add to scene
+        const onPointerColor = function(mesh) {
+            mesh.actionManager = new BABYLON.ActionManager(scene);
                 
             //what happens when the mesh is touched
+            mesh.actionManager.registerAction(
+                new BABYLON.InterpolateValueAction(
+                    BABYLON.ActionManager.OnPointerOverTrigger,
+                    mesh.material.subSurface,
+                    'tintColor',
+                    new BABYLON.Color3.Teal(),
+                    500
+                )
+            );
+
+            mesh.actionManager.registerAction(
+                new BABYLON.InterpolateValueAction(
+                    BABYLON.ActionManager.OnPointerOutTrigger,
+                    mesh.material.subSurface,
+                    'tintColor',
+                    new BABYLON.Color3(0.0, 0.5, 0.1),
+                    1000
+                )
+            );
+            
             mesh.actionManager.registerAction(
                 new BABYLON.InterpolateValueAction(
                     BABYLON.ActionManager.OnPickTrigger,
                     mesh.material.subSurface,
                     'tintColor',
-                    BABYLON.Color3.Teal(),
-                    // color,
-                    1000
+                    new BABYLON.Color3.Red(),
+                    500
                 )
-            );
-        };
+            );       
+        };            
         
         const m = model.meshes[1];
-        m.actionManager = new BABYLON.ActionManager(scene);
+
+        onPointerColor(m);
     
-        console.log(m);
-    
-        prepareButton(m);
+
     }
+
+
 
     for (let index = 0; index < meshesToLoad.length; index++) {
-        loadMeshes("", "/src/3Dmodels/", meshesToLoad[index]);
+        loadMeshes("dragonRocks", "/src/3Dmodels/", meshesToLoad[index]);
     }
 
+    //randomNumber = Math.random();
+    console.log(p);
     //Auxiliar variable to animate materials
     //var a = 0;
     
