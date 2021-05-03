@@ -1,8 +1,16 @@
 const canvas = document.getElementById("renderCanvas"); // Get the canvas element
 const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
 
-//***PG */
+function toggleVideo(name) {
+    var x = document.getElementById(name);
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+};
 
+//***PG */
 function createBaseScene () {
 
     let dlightPosition = new BABYLON.Vector3(0.02, -0.05, -0.05);
@@ -18,8 +26,8 @@ function createBaseScene () {
     let camera = new BABYLON.ArcRotateCamera(
         "camera",
         Math.PI / 3,
-        Math.PI / 1.7,
-        4,
+        Math.PI / 2.2,
+        10,
         new BABYLON.Vector3(0, 1, 0),
         scene
     );
@@ -38,9 +46,9 @@ function createBaseScene () {
 
     // Some tweaks to limit the zoom and pan
     camera.minZ = 0.1;
-    camera.wheelDeltaPercentage = 0.01;
-    camera.upperRadiusLimit = 10;
-    camera.lowerRadiusLimit = 2;
+    camera.wheelDeltaPercentage = 0.001;
+    camera.upperRadiusLimit = 20;
+    camera.lowerRadiusLimit = 1;
     camera._panningMouseButton = null;
 
     //Create a 'sphere' to use as camera target
@@ -166,7 +174,15 @@ function createBaseScene () {
                     {
                         trigger: BABYLON.ActionManager.OnPickTrigger,
                     },
-                    function () { window.location.href = "golfSim.html"; },
+                    // function () { window.location.href = "golfSim.html"; },
+                    function toggleGolfVideo() {
+                        var x = document.getElementById("golfSimVid");
+                        if (x.style.display === "block") {
+                          x.style.display = "none";
+                        } else {
+                          x.style.display = "block";
+                        }
+                      },
                     BABYLON.Condition(mesh.name === "golfBall"),
                 )
             );
