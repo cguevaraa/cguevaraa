@@ -160,12 +160,31 @@ function createBaseScene () {
                     1000
                 )  
             );   
-        };            
+        };   
         
+                
         const m = model.meshes[1];
 
         onPointerColor(m);
-    
+        
+    //     // GUI
+    // var plane = BABYLON.Mesh.CreatePlane("plane", 2);
+    // plane.parent = m;
+    // plane.position.y = 2;
+
+    // var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(plane);
+
+    // var button1 = BABYLON.GUI.Button.CreateSimpleButton("but1", "Touch me, baby!");
+    // button1.width = 1;
+    // button1.height = 0.4;
+    // button1.color = "white";
+    // button1.fontSize = 50;
+    // button1.background = "green";
+    // // button1.onPointerUpObservable.add(function() {
+    // //     alert("you did it!");
+    // });
+
+    // advancedTexture.addControl(button1);    
 
     }
 

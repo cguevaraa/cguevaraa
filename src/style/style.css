@@ -41,6 +41,12 @@ ul.topnav li a {
   text-decoration: none;
 }
 
+/* Add a color to the active/current link */
+a.active {
+    background-color: #0b8b5c;
+    color: white;
+  }
+
 /* Make the top navbar responsive */
 @media screen and (max-width: 600px) {
     ul.topnav li.right, 
