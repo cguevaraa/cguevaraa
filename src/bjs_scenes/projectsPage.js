@@ -174,7 +174,6 @@ function createBaseScene () {
                     {
                         trigger: BABYLON.ActionManager.OnPickTrigger,
                     },
-                    // function () { window.location.href = "golfSim.html"; },
                     function toggleGolfVideo() {
                         var x = document.getElementById("golfSimVid");
                         if (x.style.display === "block") {

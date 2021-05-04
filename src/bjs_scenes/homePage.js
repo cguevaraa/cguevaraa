@@ -28,11 +28,11 @@ function createBaseScene () {
     //Create PBR material
     const pbr = new BABYLON.PBRMaterial("pbr", scene);
     pbr.metallic = 0.0;
-    pbr.roughness = 0;      
+    pbr.roughness = 0;
     pbr.subSurface.isRefractionEnabled = true;
     pbr.subSurface.indexOfRefraction = 1.5;
     pbr.subSurface.tintColor = new BABYLON.Color3(0.0, 0.5, 0.1);
-    
+
     //This targets the camera to scene origin with Y bias: +1
     //camera.setTarget(new BABYLON.Vector3(0,1,0));
     camera.attachControl(canvas, false); //Set the last to false to avoid global zoom/scroll in page
@@ -80,7 +80,7 @@ function createBaseScene () {
     //Shadows
     let shadowGenerator = new BABYLON.ShadowGenerator(2048, dLight);
     shadowGenerator.useBlurExponentialShadowMap = true;
-    
+
     //Setup environment
     let env = scene.createDefaultEnvironment({
     createSkybox: true,
@@ -98,7 +98,7 @@ function createBaseScene () {
     * @param {*} meshNames | can be "" for any
     * @param {*} rootUrl
     * @param {*} fileName
-    */    
+    */
     async function loadMeshes(meshNames, rootUrl, fileName) {
     let model = await BABYLON.SceneLoader.ImportMeshAsync(
         meshNames,
@@ -117,11 +117,11 @@ function createBaseScene () {
         model.meshes.forEach((element) =>
         element.material = pbr
         );
-    
+
         // On pick interpolations
         const onPointerColor = function(mesh) {
             mesh.actionManager = new BABYLON.ActionManager(scene);
-                
+
             //what happens when the mesh is touched
             mesh.actionManager.registerAction(
                 new BABYLON.InterpolateValueAction(
@@ -142,7 +142,7 @@ function createBaseScene () {
                     1000
                 )
             );
-            
+
             mesh.actionManager.registerAction(
                 new BABYLON.InterpolateValueAction(
                     BABYLON.ActionManager.OnPickTrigger,
@@ -158,42 +158,41 @@ function createBaseScene () {
                     'tintColor',
                     new BABYLON.Color3(0.6, 0.0, 0.0),
                     1000
-                )  
-            );   
-        };   
-        
-                
+                )
+            );
+        };
+
         const m = model.meshes[1];
 
         onPointerColor(m);
-        
-    //     // GUI
-    // var plane = BABYLON.Mesh.CreatePlane("plane", 2);
-    // plane.parent = m;
-    // plane.position.y = 2;
 
-    // var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(plane);
+    // GUI
+    var plane = BABYLON.Mesh.CreatePlane("plane", 0.5);
+    plane.parent = m;
+    plane.position.y = 0.8;
+    plane.position.x = -0.65;
+    // plane.rotation.x = Math.PI;
 
-    // var button1 = BABYLON.GUI.Button.CreateSimpleButton("but1", "Touch me, baby!");
-    // button1.width = 1;
-    // button1.height = 0.4;
-    // button1.color = "white";
-    // button1.fontSize = 50;
-    // button1.background = "green";
-    // // button1.onPointerUpObservable.add(function() {
-    // //     alert("you did it!");
-    // });
+    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(plane);
 
-    // advancedTexture.addControl(button1);    
+    var button1 = BABYLON.GUI.Button.CreateSimpleButton("but1", "Touch me, baby!");
+    button1.width = 3;
+    button1.height = 0.4;
+    button1.color = "white";
+    button1.fontSize = 120;
+    button1.background = "black";
+    button1.onPointerUpObservable.add(
+        function () { window.location.href = "src/projects.html"; },
+    );
+
+    advancedTexture.addControl(button1);
 
     }
-
-
 
     for (let index = 0; index < meshesToLoad.length; index++) {
         loadMeshes("", "/src/3Dmodels/", meshesToLoad[index]);
     }
-    
+
     // Code in this function will run ~60 times per second
     scene.registerBeforeRender(function () {
         //Slowly rotate camera

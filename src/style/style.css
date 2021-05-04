@@ -133,8 +133,8 @@ a.active {
     z-index: 2;
 }
 
-#underConst{
-    width: calc(1em + 2vw);
+#projIMG{
+    width: calc(1vw + 2vw);
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -145,7 +145,7 @@ a.active {
     /* padding: 50px 0; */
     text-align: center;
     /* background-color: lightblue; */
-    /* margin-top: 20px; */
+    margin-top: 20px;
     display: none;
   }
 
