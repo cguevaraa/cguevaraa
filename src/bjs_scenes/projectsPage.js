@@ -17,6 +17,7 @@ function createBaseScene () {
     let dLightOrientation = new BABYLON.Vector3(0, 20, 0);
     const meshesToLoad = [
         "golfBall.glb",
+        "squash.glb",
         ];
 
     //Scene
@@ -222,7 +223,7 @@ function createBaseScene () {
     // Code in this function will run ~60 times per second
     scene.registerBeforeRender(function () {
         //Slowly rotate camera
-        camera.alpha += (0.000005 * scene.getEngine().getDeltaTime());
+        camera.alpha += (0.00001 * scene.getEngine().getDeltaTime());
         });
 
     return scene;
