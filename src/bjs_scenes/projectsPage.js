@@ -18,6 +18,8 @@ function createBaseScene () {
     const meshesToLoad = [
         "golfBall.glb",
         "squash.glb",
+        "poi.glb",
+        "groot.glb",
         ];
 
     //Scene
@@ -26,9 +28,9 @@ function createBaseScene () {
     //Camera
     let camera = new BABYLON.ArcRotateCamera(
         "camera",
-        Math.PI / 3,
+        Math.PI / 2,
         Math.PI / 2.2,
-        10,
+        7,
         new BABYLON.Vector3(0, 1, 0),
         scene
     );
@@ -94,6 +96,7 @@ function createBaseScene () {
     createSkybox: true,
     skyboxSize: 150,
     skyboxColor: new BABYLON.Color3(0.01,0.01,0.01),
+    environmentTexture: "/src/env/lilienstein.env",
     createGround: true,
     groundSize: 100,
     groundColor: new BABYLON.Color3(0.02,0.02,0.02),
@@ -206,10 +209,15 @@ function createBaseScene () {
         //     );   
         };            
         
-        const m = model.meshes[1];
-        console.log("Mesh name: " + m.name);
+        // const m = model.meshes[1];
+        // console.log("Mesh name: " + m.name);
 
-        onPointerColor(m);
+        model.meshes.forEach((element) =>
+         {
+             onPointerColor(element);
+         }
+        );
+
     
 
     }
