@@ -75,17 +75,7 @@ function createBaseScene () {
 
     //Directional light orientation
     dLight.position = dLightOrientation;
-
-    //Point light
-    lightPos = (5, 10, -5);
-    const pLight = new BABYLON.PointLight(
-        "pLight",
-        lightPos,
-        scene
-    );
-    //Light colors
-    pLight.diffuse = new BABYLON.Color3(0.53, 0.66, 0.74);
-    pLight.specular = new BABYLON.Color3(0.83, 0.86, 0.89);
+    dLight.intensity = 1;
 
     //Shadows
     let shadowGenerator = new BABYLON.ShadowGenerator(2048, dLight);
@@ -99,7 +89,7 @@ function createBaseScene () {
     environmentTexture: "/src/env/lilienstein.env",
     createGround: true,
     groundSize: 100,
-    groundColor: new BABYLON.Color3(0.02,0.02,0.02),
+    groundColor: new BABYLON.Color3(0.1,0.1,0.1),
     enableGroundShadow: true,
     groundYBias: 0.975,
     });
