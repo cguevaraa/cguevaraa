@@ -16,10 +16,12 @@ function createBaseScene () {
     let dlightPosition = new BABYLON.Vector3(0.02, -0.05, -0.05);
     let dLightOrientation = new BABYLON.Vector3(0, 20, 0);
     const meshesToLoad = [
+        "pRocks.glb",
         "golfBall.glb",
         "squash.glb",
         "poi.glb",
         "groot.glb",
+        "reel.glb",
         ];
 
     //Scene
