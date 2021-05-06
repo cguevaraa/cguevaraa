@@ -1,35 +1,11 @@
 const canvas = document.getElementById("renderCanvas"); // Get the canvas element
 const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
 
-function toggleVideo(name) {
-    var x = document.getElementById(name);
-    if (x.style.display === "block") {
-      x.style.display = "none";
-    } else {
-      x.style.display = "block";
-    }
-};
-
 function removeIFrame() {
     var frame = document.getElementById("iframe");
     frame.parentNode.removeChild(frame);
     var btn = document.getElementById("closeBtn");
     btn.parentNode.removeChild(btn);
-};
-
-function createIFrame() {
-    var divTo = document.getElementById("iFrameDiv");
-    var ifrm = document.createElement("iframe");
-    ifrm.setAttribute("id", "iframe");
-    ifrm.setAttribute("src", "https://player.vimeo.com/video/544493063");
-    ifrm.style.width = "640px";
-    ifrm.style.height = "480px";
-    var btn = document.createElement("button");
-    btn.setAttribute("id", "closeBtn");
-    btn.setAttribute("onclick", "removeIFrame();");
-    btn.innerHTML = "CLOSE";
-    divTo.appendChild(ifrm);
-    divTo.appendChild(btn);
 };
 
 //****PG****//
@@ -123,15 +99,13 @@ function createBaseScene () {
         fileName
         );
 
-        console.log("Loaded: " + fileName);
-
         //Add shadow caster to each mesh within model
         model.meshes.forEach((element) =>
         shadowGenerator.addShadowCaster(element, true)
         );
     
         // On pick actions
-        const onPointerColor = function(mesh) {
+        const onPointerAction = function(mesh) {
             mesh.actionManager = new BABYLON.ActionManager(scene);
                 
             //what happens when the mesh is touched
@@ -161,6 +135,7 @@ function createBaseScene () {
                         trigger: BABYLON.ActionManager.OnPickTrigger,
                     },
                     function createIFrame() {
+                        console.log(mesh.name);
                         if(!document.getElementById("iframe")){ //Check if there's an iframe already
                         const divTo = document.getElementById("iFrameDiv");
                         //Create 'close' button and add to div
@@ -184,9 +159,9 @@ function createBaseScene () {
         };
 
         model.meshes.forEach((element) =>
-         {
-             onPointerColor(element);
-         }
+            {
+             onPointerAction(element);
+            }
         );
     }
 
