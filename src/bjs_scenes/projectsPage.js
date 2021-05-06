@@ -1,6 +1,24 @@
 const canvas = document.getElementById("renderCanvas"); // Get the canvas element
 const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
 
+const meshesToLoad = [
+    "pRocks.glb",
+    "golfBall.glb",
+    "squash.glb",
+    "poi.glb",
+    "groot.glb",
+    "reel.glb",
+    ];
+
+const iframeVid = {
+    "golfBall": "https://player.vimeo.com/video/544493063",
+    "squash": "",
+    "poi": "https://player.vimeo.com/video/451139384",
+    "groot": "",
+    "reel_primitive0": "https://player.vimeo.com/video/342067546",
+    "reel_primitive1": "https://player.vimeo.com/video/342067546",
+};
+
 function removeIFrame() {
     var frame = document.getElementById("iframe");
     frame.parentNode.removeChild(frame);
@@ -11,22 +29,14 @@ function removeIFrame() {
 //****PG****//
 function createBaseScene () {
 
-    let dlightPosition = new BABYLON.Vector3(0.02, -0.05, -0.05);
-    let dLightOrientation = new BABYLON.Vector3(0, 20, 0);
-    const meshesToLoad = [
-        "pRocks.glb",
-        "golfBall.glb",
-        "squash.glb",
-        "poi.glb",
-        "groot.glb",
-        "reel.glb",
-        ];
+    const dlightPosition = new BABYLON.Vector3(0.02, -0.05, -0.05);
+    const dLightOrientation = new BABYLON.Vector3(0, 20, 0);
 
     //Scene
     const scene = new BABYLON.Scene(engine);
 
     //Camera
-    let camera = new BABYLON.ArcRotateCamera(
+    const camera = new BABYLON.ArcRotateCamera(
         "camera",
         Math.PI / 2,
         Math.PI / 2.2,
@@ -69,11 +79,11 @@ function createBaseScene () {
     dLight.intensity = 1;
 
     //Shadows
-    let shadowGenerator = new BABYLON.ShadowGenerator(2048, dLight);
+    const shadowGenerator = new BABYLON.ShadowGenerator(2048, dLight);
     shadowGenerator.useBlurExponentialShadowMap = true;
     
     //Setup environment
-    let env = scene.createDefaultEnvironment({
+    const env = scene.createDefaultEnvironment({
     createSkybox: true,
     skyboxSize: 150,
     skyboxColor: new BABYLON.Color3(0.01,0.01,0.01),
@@ -136,7 +146,8 @@ function createBaseScene () {
                     },
                     function createIFrame() {
                         console.log(mesh.name);
-                        if(!document.getElementById("iframe")){ //Check if there's an iframe already
+                         //Check if there's an iframe already and if we have a video address
+                        if((!document.getElementById("iframe")) && iframeVid[mesh.name]){
                         const divTo = document.getElementById("iFrameDiv");
                         //Create 'close' button and add to div
                         const btn = document.createElement("button");
@@ -146,7 +157,7 @@ function createBaseScene () {
                         //Create the iframe and add to div
                         const ifrm = document.createElement("iframe");
                         ifrm.setAttribute("id", "iframe");
-                        ifrm.setAttribute("src", "https://player.vimeo.com/video/544493063");
+                        ifrm.setAttribute("src", iframeVid[mesh.name]);
                         ifrm.style.width = "640px";
                         ifrm.style.height = "480px";
                         divTo.appendChild(ifrm);
