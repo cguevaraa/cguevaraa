@@ -10,7 +10,29 @@ function toggleVideo(name) {
     }
 };
 
-//***PG */
+function removeIFrame() {
+    var frame = document.getElementById("iframe");
+    frame.parentNode.removeChild(frame);
+    var btn = document.getElementById("closeBtn");
+    btn.parentNode.removeChild(btn);
+};
+
+function createIFrame() {
+    var divTo = document.getElementById("iFrameDiv");
+    var ifrm = document.createElement("iframe");
+    ifrm.setAttribute("id", "iframe");
+    ifrm.setAttribute("src", "https://player.vimeo.com/video/544493063");
+    ifrm.style.width = "640px";
+    ifrm.style.height = "480px";
+    var btn = document.createElement("button");
+    btn.setAttribute("id", "closeBtn");
+    btn.setAttribute("onclick", "removeIFrame();");
+    btn.innerHTML = "CLOSE";
+    divTo.appendChild(ifrm);
+    divTo.appendChild(btn);
+};
+
+//****PG****//
 function createBaseScene () {
 
     let dlightPosition = new BABYLON.Vector3(0.02, -0.05, -0.05);
@@ -37,16 +59,7 @@ function createBaseScene () {
         scene
     );
 
-    // //Create PBR material
-    // const pbr = new BABYLON.PBRMaterial("pbr", scene);
-    // pbr.metallic = 0.0;
-    // pbr.roughness = 0;      
-    // pbr.subSurface.isRefractionEnabled = true;
-    // pbr.subSurface.indexOfRefraction = 1.5;
-    // pbr.subSurface.tintColor = new BABYLON.Color3(0.0, 0.5, 0.1);
-    
-    //This targets the camera to scene origin with Y bias: +1
-    //camera.setTarget(new BABYLON.Vector3(0,1,0));
+    //Set as active camera
     camera.attachControl(canvas, false); //Set the last to false to avoid global zoom/scroll in page
 
     // Some tweaks to limit the zoom and pan
@@ -96,21 +109,6 @@ function createBaseScene () {
     groundYBias: 0.975,
     });
     
-    // const golfBall = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter: 2, segments: 16}, scene);
-
-    // //Create and setup pbr material
-    // const pbr_golfBall = new BABYLON.PBRMaterial("pbr_golfBall", scene);
-
-    // pbr_golfBall.useAmbientOcclusionFromMetallicTextureRed = true;
-    // pbr_golfBall.useRoughnessFromMetallicTextureGreen = true; 
-    // pbr_golfBall.useMetallnessFromMetallicTextureBlue = true;
-    // pbr_golfBall.useRoughnessFromMetallicTextureAlpha = false;
-
-    // pbr_golfBall.albedoTexture = new BABYLON.Texture("src/3Dmodels/textures/TX_golfBall_albedo.png", scene);
-    // pbr_golfBall.bumpTexture = new BABYLON.Texture("src/3Dmodels/textures/TX_golfBall_nrm_invr.png", scene);
-    // pbr_golfBall.metallicTexture = new BABYLON.Texture("src/3Dmodels/textures/TX_golfBall_orm.png", scene);;
-
-    // golfBall.material = pbr_golfBall;
 
     /**
     * ASYNC/AWAIT Function to load a model into the scene
@@ -131,14 +129,6 @@ function createBaseScene () {
         model.meshes.forEach((element) =>
         shadowGenerator.addShadowCaster(element, true)
         );
-
-        // //Add the material we've created to each mesh
-        // model.meshes.forEach((element) =>
-        // element.material = pbr
-        // );
-
-
-
     
         // On pick actions
         const onPointerColor = function(mesh) {
@@ -170,51 +160,35 @@ function createBaseScene () {
                     {
                         trigger: BABYLON.ActionManager.OnPickTrigger,
                     },
-                    function toggleGolfVideo() {
-                        var x = document.getElementById("golfSimVid");
-                        if (x.style.display === "block") {
-                          x.style.display = "none";
-                        } else {
-                          x.style.display = "block";
+                    function createIFrame() {
+                        if(!document.getElementById("iframe")){ //Check if there's an iframe already
+                        const divTo = document.getElementById("iFrameDiv");
+                        //Create 'close' button and add to div
+                        const btn = document.createElement("button");
+                        btn.setAttribute("id", "closeBtn");
+                        btn.setAttribute("onclick", "removeIFrame();");
+                        btn.innerHTML = "CLOSE";
+                        //Create the iframe and add to div
+                        const ifrm = document.createElement("iframe");
+                        ifrm.setAttribute("id", "iframe");
+                        ifrm.setAttribute("src", "https://player.vimeo.com/video/544493063");
+                        ifrm.style.width = "640px";
+                        ifrm.style.height = "480px";
+                        divTo.appendChild(ifrm);
+                        divTo.appendChild(btn);
                         }
-                      },
+                    },
                     BABYLON.Condition(mesh.name === "golfBall"),
                 )
             );
-            
-        //     mesh.actionManager.registerAction(
-        //         new BABYLON.InterpolateValueAction(
-        //             BABYLON.ActionManager.OnPickTrigger,
-        //             mesh.material.subSurface,
-        //             'tintColor',
-        //             new BABYLON.Color3(0.3, 0.0, 0.0),
-        //             1000
-        //         )
-        //     ).then(
-        //         new BABYLON.InterpolateValueAction(
-        //             BABYLON.ActionManager.OnPickTrigger,
-        //             mesh.material.subSurface,
-        //             'tintColor',
-        //             new BABYLON.Color3(0.8, 0.0, 0.0),
-        //             1000
-        //         )  
-        //     );   
-        };            
-        
-        // const m = model.meshes[1];
-        // console.log("Mesh name: " + m.name);
+        };
 
         model.meshes.forEach((element) =>
          {
              onPointerColor(element);
          }
         );
-
-    
-
     }
-
-
 
     for (let index = 0; index < meshesToLoad.length; index++) {
         loadMeshes("", "/src/3Dmodels/projects/", meshesToLoad[index]);
@@ -229,7 +203,7 @@ function createBaseScene () {
     return scene;
 }
 
-//***/PG */
+//****/PG****//
 
 const scene = createBaseScene(); //Call the createScene function
 
