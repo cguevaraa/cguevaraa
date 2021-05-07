@@ -8,6 +8,7 @@ const meshesToLoad = [
     "poi.glb",
     "groot.glb",
     "reel.glb",
+    "VRGlasses.glb",
     ];
 
 const iframeVid = {
@@ -22,6 +23,10 @@ const redirect = {
     "squash_primitive1": "wasmGames/squashTheCreeps.html",
     "squash_primitive2": "wasmGames/squashTheCreeps.html",
     "groot": "https://sketchfab.com/christianguevara",
+    "VRGlasses_primitive0": "odalysVR.html",
+    "VRGlasses_primitive1": "odalysVR.html",
+    "VRGlasses_primitive2": "odalysVR.html",
+    "VRGlasses_primitive3": "odalysVR.html",
 }
 
 function removeIFrame() {
