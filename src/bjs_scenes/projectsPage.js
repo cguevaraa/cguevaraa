@@ -35,6 +35,9 @@ function createBaseScene () {
     //Scene
     const scene = new BABYLON.Scene(engine);
 
+    //Highlight
+    const hl = new BABYLON.HighlightLayer("hl1", scene);
+
     //Camera
     const camera = new BABYLON.ArcRotateCamera(
         "camera",
@@ -108,34 +111,32 @@ function createBaseScene () {
         rootUrl,
         fileName
         );
-
-        //Add shadow caster to each mesh within model
-        model.meshes.forEach((element) =>
-        shadowGenerator.addShadowCaster(element, true)
-        );
     
         // On pick actions
         const onPointerAction = function(mesh) {
             mesh.actionManager = new BABYLON.ActionManager(scene);
+            const hlColor = new BABYLON.Color3(0.4,0.8,1);
                 
             //what happens when the mesh is touched
             mesh.actionManager.registerAction(
-                new BABYLON.InterpolateValueAction(
-                    BABYLON.ActionManager.OnPointerOverTrigger,
-                    mesh.material,
-                    'emissiveColor',
-                    new BABYLON.Color3.Teal(),
-                    1
+                new BABYLON.ExecuteCodeAction(
+                {   
+                    trigger: BABYLON.ActionManager.OnPointerOverTrigger,
+                },
+                function addHighlighter(){
+                    hl.addMesh(mesh, hlColor);
+                }
                 )
             );
 
             mesh.actionManager.registerAction(
-                new BABYLON.InterpolateValueAction(
-                    BABYLON.ActionManager.OnPointerOutTrigger,
-                    mesh.material,
-                    'emissiveColor',
-                    new BABYLON.Color3.Black(),
-                    1
+                new BABYLON.ExecuteCodeAction(
+                {   
+                    trigger: BABYLON.ActionManager.OnPointerOutTrigger,
+                },
+                function removeHighlighter(){
+                    hl.removeMesh(mesh);
+                }
                 )
             );
 
@@ -169,10 +170,20 @@ function createBaseScene () {
             );
         };
 
+
         model.meshes.forEach((element) =>
-            {
-             onPointerAction(element);
-            }
+        {
+            //Add shadow caster to each mesh within model
+            shadowGenerator.addShadowCaster(element, true);
+
+            //Prepare outline properties for onPointerActions
+            // element.renderOutline = false;
+            // element.outlineWidth = 0.1;
+            // element.outlineColor = new BABYLON.Color3.Teal();
+
+            onPointerAction(element);
+        }
+
         );
     }
 
