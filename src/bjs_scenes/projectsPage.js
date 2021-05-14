@@ -125,6 +125,8 @@ function createBaseScene () {
         // On pick actions
         const onPointerAction = function(mesh) {
             mesh.actionManager = new BABYLON.ActionManager(scene);
+            
+            //Highlight color
             const hlColor = new BABYLON.Color3(0.4,0.8,1);
                 
             //what happens when the mesh is touched
@@ -194,11 +196,6 @@ function createBaseScene () {
         {
             //Add shadow caster to each mesh within model
             shadowGenerator.addShadowCaster(element, true);
-
-            //Prepare outline properties for onPointerActions
-            // element.renderOutline = false;
-            // element.outlineWidth = 0.1;
-            // element.outlineColor = new BABYLON.Color3.Teal();
 
             onPointerAction(element);
         }
