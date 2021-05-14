@@ -8,16 +8,26 @@ const meshesToLoad = [
     "poi.glb",
     "groot.glb",
     "reel.glb",
+    "VRGlasses.glb",
     ];
 
 const iframeVid = {
     "golfBall": "https://player.vimeo.com/video/544493063",
-    "squash": "",
     "poi": "https://player.vimeo.com/video/451139384",
-    "groot": "",
     "reel_primitive0": "https://player.vimeo.com/video/342067546",
     "reel_primitive1": "https://player.vimeo.com/video/342067546",
 };
+
+const redirect = {
+    "squash_primitive0": "wasmGames/squashTheCreeps.html",
+    "squash_primitive1": "wasmGames/squashTheCreeps.html",
+    "squash_primitive2": "wasmGames/squashTheCreeps.html",
+    "groot": "https://sketchfab.com/christianguevara",
+    "VRGlasses_primitive0": "odalysVR.html",
+    "VRGlasses_primitive1": "odalysVR.html",
+    "VRGlasses_primitive2": "odalysVR.html",
+    "VRGlasses_primitive3": "odalysVR.html",
+}
 
 function removeIFrame() {
     var frame = document.getElementById("iframe");
@@ -145,24 +155,33 @@ function createBaseScene () {
                     {
                         trigger: BABYLON.ActionManager.OnPickTrigger,
                     },
-                    function createIFrame() {
-                        console.log(mesh.name);
-                         //Check if there's an iframe already and if we have a video address
-                        if((!document.getElementById("iframe")) && iframeVid[mesh.name]){
-                        const divTo = document.getElementById("iFrameDiv");
-                        //Create 'close' button and add to div
-                        const btn = document.createElement("button");
-                        btn.setAttribute("id", "closeBtn");
-                        btn.setAttribute("onclick", "removeIFrame();");
-                        btn.innerHTML = "CLOSE";
-                        //Create the iframe and add to div
-                        const ifrm = document.createElement("iframe");
-                        ifrm.setAttribute("id", "iframe");
-                        ifrm.setAttribute("src", iframeVid[mesh.name]);
-                        ifrm.style.width = "640px";
-                        ifrm.style.height = "480px";
-                        divTo.appendChild(ifrm);
-                        divTo.appendChild(btn);
+                    function chooseAction(){
+
+                        if(iframeVid[mesh.name]){
+                            console.log(mesh.name);
+                            //Check if there's an iframe already and if we have a video address
+                                if((!document.getElementById("iframe"))){
+                                const divTo = document.getElementById("iFrameDiv");
+                                //Create 'close' button and add to div
+                                const btn = document.createElement("button");
+                                btn.setAttribute("id", "closeBtn");
+                                btn.setAttribute("onclick", "removeIFrame();");
+                                btn.innerHTML = "CLOSE";
+                                //Create the iframe and add to div
+                                const ifrm = document.createElement("iframe");
+                                ifrm.setAttribute("id", "iframe");
+                                ifrm.setAttribute("src", iframeVid[mesh.name]);
+                                ifrm.style.width = "640px";
+                                ifrm.style.height = "480px";
+                                divTo.appendChild(ifrm);
+                                divTo.appendChild(btn);
+
+                            }
+
+                        }else if(redirect[mesh.name]){
+                            console.log(mesh.name);
+                            // window.location.href = redirect[mesh.name];
+                            window.open(redirect[mesh.name], '_blank').focus();
                         }
                     },
                     BABYLON.Condition(mesh.name === "golfBall"),
