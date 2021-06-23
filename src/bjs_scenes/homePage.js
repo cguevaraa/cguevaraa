@@ -166,26 +166,26 @@ function createBaseScene () {
 
         onPointerColor(m);
 
-    // GUI
-    var plane = BABYLON.Mesh.CreatePlane("plane", 0.5);
-    plane.parent = m;
-    plane.position.y = 0.8;
-    plane.position.x = -0.65;
-    // plane.rotation.x = Math.PI;
+    // // GUI
+    // var plane = BABYLON.Mesh.CreatePlane("plane", 0.5);
+    // plane.parent = m;
+    // plane.position.y = 0.8;
+    // plane.position.x = -0.65;
+    // // plane.rotation.x = Math.PI;
 
-    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(plane);
+    // var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(plane);
 
-    var button1 = BABYLON.GUI.Button.CreateSimpleButton("but1", "Touch me, baby!");
-    button1.width = 3;
-    button1.height = 0.4;
-    button1.color = "white";
-    button1.fontSize = 120;
-    button1.background = "black";
-    button1.onPointerUpObservable.add(
-        function () { window.location.href = "src/projects.html"; },
-    );
+    // var button1 = BABYLON.GUI.Button.CreateSimpleButton("but1", "Touch me, baby!");
+    // button1.width = 3;
+    // button1.height = 0.4;
+    // button1.color = "white";
+    // button1.fontSize = 120;
+    // button1.background = "black";
+    // button1.onPointerUpObservable.add(
+    //     function () { window.location.href = "src/projects.html"; },
+    // );
 
-    advancedTexture.addControl(button1);
+    // advancedTexture.addControl(button1);
 
     }
 
