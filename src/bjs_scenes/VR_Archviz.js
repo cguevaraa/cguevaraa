@@ -7,7 +7,7 @@ var createScene =  function () {
 
 var scene = new BABYLON.Scene(engine);
 var vrCam = new BABYLON.FreeCamera("vrCam", new BABYLON.Vector3(0, 1, 1), scene);
-vrCam.setTarget(BABYLON.Vector3.Zero());
+// vrCam.setTarget(BABYLON.Vector3.Zero());
 vrCam.attachControl(canvas, true);
 vrCam.maxZ = 50000;
 vrCam.minZ = 0.1;

@@ -35,6 +35,7 @@ function createBaseScene () {
         scene
     );
 
+
     //Create PBR material
     const pbr = new BABYLON.PBRMaterial("pbr", scene);
     pbr.metallic = 0.0;
@@ -48,9 +49,9 @@ function createBaseScene () {
     camera.attachControl(canvas, false); //Set the last to false to avoid global zoom/scroll in page
 
     // Some tweaks to limit the zoom and pan
-    camera.minZ = 0.1;
-    camera.maxZ = 50000;
-    camera.wheelDeltaPercentage = 0.01;
+    camera.minZ = 0.01;
+    camera.maxZ = 4000;
+    camera.wheelDeltaPercentage = 0.001;
     camera.upperRadiusLimit = 20;
     camera.lowerRadiusLimit = 2;
     camera._panningMouseButton = 2;
