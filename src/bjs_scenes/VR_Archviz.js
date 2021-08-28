@@ -52,7 +52,7 @@ const meshesToLoad = [
         "SM_Bath_Gl.glb",
         "SM_Bath_Mi.glb",
         "SM_BigR_F0.glb",
-        "SM_Ceiling.glb",
+        // "SM_Ceiling.glb",
         "SM_LivR_F0.glb",
         "SM_LivR_F1.glb",
         "SM_LivR_F2.glb",
