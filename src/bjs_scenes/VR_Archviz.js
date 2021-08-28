@@ -116,17 +116,18 @@ const env = scene.createDefaultEnvironment({
         groundSize: 10,
         groundColor: new BABYLON.Color3(0.7,0.5,0.5),
         enableGroundShadow: true,
-        groundYBias: 1,
+        groundYBias: 1.5,
       });
 
-//*********WEBXR************************
-    const xr = scene.createDefaultXRExperienceAsync({
-    floorMeshes: [env.ground]
+      const xrPromise = scene.createDefaultXRExperienceAsync({
+        floorMeshes: [ground]
     });
-//*********/WEBXR********************************
 
-
-return scene;
+    return xrPromise.then((xrExperience) => {
+        console.log("Done, WebXR is enabled.");
+        return scene;
+    });
+    
 };
 //***************/PLAYGROUND FUNCTIONAL CODE*****************************************
 
