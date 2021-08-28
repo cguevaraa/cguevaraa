@@ -6,11 +6,46 @@ const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engi
 const createScene =  function () {
 
 const scene = new BABYLON.Scene(engine);
-const vrCam = new BABYLON.FreeCamera("vrCam", new BABYLON.Vector3(0, 1, 1), scene);
-// vrCam.setTarget(BABYLON.Vector3.Zero());
-vrCam.attachControl(canvas, true);
-vrCam.maxZ = 50000;
-vrCam.minZ = 0.1;
+
+// const vrCam = new BABYLON.FreeCamera("vrCam", new BABYLON.Vector3(0, 1, 1), scene);
+// // vrCam.setTarget(BABYLON.Vector3.Zero());
+// vrCam.attachControl(canvas, true);
+// vrCam.maxZ = 50000;
+// vrCam.minZ = 0.1;
+
+//Camera
+  let camera = new BABYLON.ArcRotateCamera(
+      "camera",
+      Math.PI / 4,
+      Math.PI / 2,
+      8,
+      new BABYLON.Vector3(0, 7, 0),
+      scene
+  );
+
+  camera.attachControl(canvas, false); //Set the last to false to avoid global zoom/scroll in page
+
+  // Some tweaks to limit the zoom and pan
+  camera.minZ = 0.01;
+  camera.maxZ = 4000;
+  camera.wheelDeltaPercentage = 0.001;
+  camera.upperRadiusLimit = 20;
+  camera.lowerRadiusLimit = 2;
+  camera._panningMouseButton = 2;
+  camera.upperBetaLimit = Math.PI/2;
+
+  //Create a 'sphere' to use as camera target
+  const camTarget = BABYLON.MeshBuilder.CreateSphere(
+      "camTarget",
+      { diameter: 0.0001, segments: 4 },
+      scene
+  );
+
+  //Move the camTarget upward
+  camTarget.position.y = 1.1;
+  camTarget.position.x = -3;
+  // Set camera target
+  camera.target = camTarget.absolutePosition;
 
 const meshesToLoad = [
         "SM_Bath_F0.glb",
