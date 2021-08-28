@@ -28,9 +28,9 @@ function createBaseScene () {
     //Camera
     let camera = new BABYLON.ArcRotateCamera(
         "camera",
-        Math.PI / 5,
-        Math.PI / 3,
-        4,
+        Math.PI / 4,
+        Math.PI / 2,
+        8,
         new BABYLON.Vector3(0, 7, 0),
         scene
     );
@@ -70,34 +70,8 @@ function createBaseScene () {
     // Set camera target
     camera.target = camTarget.absolutePosition;
 
-    // //Directional light
-    // const dLight = new BABYLON.DirectionalLight(
-    //     "dLight",
-    //     dlightPosition,
-    //     scene
-    // );
-
-    // //Directional light orientation
-    // dLight.position = dLightOrientation;
-
-    // //Point light
-    // lightPos = (5, 10, -5);
-    // const pLight = new BABYLON.PointLight(
-    //     "pLight",
-    //     lightPos,
-    //     scene
-    // );
-    // //Light colors
-    // pLight.diffuse = new BABYLON.Color3(0.53, 0.66, 0.74);
-    // pLight.specular = new BABYLON.Color3(0.83, 0.86, 0.89);
-
-    // //Shadows
-    // let shadowGenerator = new BABYLON.ShadowGenerator(2048, dLight);
-    // shadowGenerator.useBlurExponentialShadowMap = true;
-
-
   //Lights
-  var dLight = new BABYLON.DirectionalLight(
+  const dLight = new BABYLON.DirectionalLight(
     "dLight",
     new BABYLON.Vector3(0.02, -0.05, -0.05),
     scene
@@ -105,27 +79,15 @@ function createBaseScene () {
   dLight.position = new BABYLON.Vector3(0, 20, 0);
 
     // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
-var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
 
-  //Shadows
-  var shadowGenerator = new BABYLON.ShadowGenerator(2048, dLight);
-  shadowGenerator.useBlurExponentialShadowMap = true;
-    
-    // //Setup environment
-    // let env = scene.createDefaultEnvironment({
-    // createSkybox: true,
-    // skyboxSize: 150,
-    // skyboxColor: new BABYLON.Color3(0.01,0.01,0.01),
-    // createGround: true,
-    // groundSize: 100,
-    // groundColor: new BABYLON.Color3(0.02,0.02,0.02),
-    // enableGroundShadow: true,
-    // groundYBias: 0.975,
-    // });
+ //Shadows
+ const shadowGenerator = new BABYLON.ShadowGenerator(2048, dLight);
+ shadowGenerator.useBlurExponentialShadowMap = true;
 
-    //Setup environment
-var env = scene.createDefaultEnvironment({
+ //Setup environment
+const env = scene.createDefaultEnvironment({
   createSkybox: true,
   skyboxSize: 10,
   skyboxColor: new BABYLON.Color3(0.0375,0.0375,0.0375),
@@ -156,69 +118,25 @@ var env = scene.createDefaultEnvironment({
         model.meshes.forEach((element) =>
         shadowGenerator.addShadowCaster(element, true)
         );
-
-        // //Add the material we've created to each mesh
-        // model.meshes.forEach((element) =>
-        // element.material = pbr
-        // );
-    
-        // // On pick interpolations
-        // const prepareButton = function(mesh) {
-        //     mesh.actionManager = new BABYLON.ActionManager(scene);//create collision and add to scene
-                
-        //     //what happens when the mesh is touched
-        //     mesh.actionManager.registerAction(
-        //         new BABYLON.InterpolateValueAction(
-        //             BABYLON.ActionManager.OnPickTrigger,
-        //             mesh.material.subSurface,
-        //             'tintColor',
-        //             BABYLON.Color3.Teal(),
-        //             // color,
-        //             1000
-        //         )
-        //     );
-        // };
-        
-        // const m = model.meshes[1];
-        // m.actionManager = new BABYLON.ActionManager(scene);
-    
-        // console.log(m);
-    
-        // prepareButton(m);
     }
 
     for (let index = 0; index < meshesToLoad.length; index++) {
         loadMeshes("", "/src/3Dmodels/VR_Archviz/", meshesToLoad[index]);
     }
-
-    //Auxiliar variable to animate materials
-    //var a = 0;
     
     // Code in this function will run ~60 times per second
-    scene.registerBeforeRender(function () {
-        //Slowly rotate camera
-        camera.alpha += (0.00001 * scene.getEngine().getDeltaTime());
-    //     a += 0.005;
-    //     pbr.subSurface.tintColor.g = Math.cos(a) * 0.5 + 0.5;
-    //     pbr.subSurface.tintColor.b = pbr.subSurface.tintColor.g;
-        });
+    // scene.registerBeforeRender(function () {
+    //     //Slowly rotate camera
+    //     camera.alpha += (0.00001 * scene.getEngine().getDeltaTime());
+    //     });
+
+  //*********WEBXR************************
+    const xr = scene.createDefaultXRExperienceAsync({
+      floorMeshes: [env.ground]
+      });
+  //*********/WEBXR********************************
 
     return scene;
-}
-
-function createCamProductViz(scene)
-{
-    // CAMERA
-    const cam = new BABYLON.ArcRotateCamera(
-        "camera",
-        Math.PI / 3,
-        Math.PI / 1.7,
-        4,
-        new BABYLON.Vector3(0, 1, 0),
-        scene
-    );
-
-    return cam;
 }
 
 //***/PG */

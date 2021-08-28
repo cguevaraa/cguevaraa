@@ -3,16 +3,16 @@ const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engi
  
 
 //***************PLAYGROUND FUNCTIONAL CODE*****************************************
-var createScene =  function () {
+const createScene =  function () {
 
-var scene = new BABYLON.Scene(engine);
-var vrCam = new BABYLON.FreeCamera("vrCam", new BABYLON.Vector3(0, 1, 1), scene);
+const scene = new BABYLON.Scene(engine);
+const vrCam = new BABYLON.FreeCamera("vrCam", new BABYLON.Vector3(0, 1, 1), scene);
 // vrCam.setTarget(BABYLON.Vector3.Zero());
 vrCam.attachControl(canvas, true);
 vrCam.maxZ = 50000;
 vrCam.minZ = 0.1;
 
-var meshesToLoad = [
+const meshesToLoad = [
         "SM_Bath_F0.glb",
         "SM_Bath_Gl.glb",
         "SM_Bath_Mi.glb",
@@ -28,22 +28,22 @@ var meshesToLoad = [
         "SM_SkySphere.glb",
         ];
 
-var toLoad = meshesToLoad.length;
+const toLoad = meshesToLoad.length;
 
   //Lights
-  var dLight = new BABYLON.DirectionalLight(
+  const dLight = new BABYLON.DirectionalLight(
         "dLight",
         new BABYLON.Vector3(0.02, -0.05, -0.05),
         scene
       );
       dLight.position = new BABYLON.Vector3(0, 20, 0);
 
-        // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
-    var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+    // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
+    const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
     
       //Shadows
-      var shadowGenerator = new BABYLON.ShadowGenerator(2048, dLight);
+      const shadowGenerator = new BABYLON.ShadowGenerator(2048, dLight);
       shadowGenerator.useBlurExponentialShadowMap = true;
 
  /**
@@ -53,7 +53,7 @@ var toLoad = meshesToLoad.length;
    * @param {*} fileName
    */
   async function loadMeshes(meshNames, rootUrl, fileName) {
-        var model = await BABYLON.SceneLoader.ImportMeshAsync(
+        const model = await BABYLON.SceneLoader.ImportMeshAsync(
           meshNames,
           rootUrl,
           fileName
@@ -67,13 +67,13 @@ var toLoad = meshesToLoad.length;
     
       }
 
-      for (var index = 0; index < meshesToLoad.length; index++) {
+      for (const index = 0; index < meshesToLoad.length; index++) {
               loadMeshes("", "/src/3Dmodels/VR_Archviz/", meshesToLoad[index]);
       }
 
 
 //Setup environment
-var env = scene.createDefaultEnvironment({
+const env = scene.createDefaultEnvironment({
         createSkybox: true,
         skyboxSize: 150,
         skyboxColor: new BABYLON.Color3(0.0375,0.0375,0.0375),
