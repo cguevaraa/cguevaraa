@@ -75,7 +75,6 @@ const toLoad = meshesToLoad.length;
 
     // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
-
     
       //Shadows
       const shadowGenerator = new BABYLON.ShadowGenerator(2048, dLight);
@@ -102,7 +101,7 @@ const toLoad = meshesToLoad.length;
     
       }
 
-      for (const index = 0; index < meshesToLoad.length; index++) {
+      for (let index = 0; index < meshesToLoad.length; index++) {
               loadMeshes("", "/src/3Dmodels/VR_Archviz/", meshesToLoad[index]);
       }
 
