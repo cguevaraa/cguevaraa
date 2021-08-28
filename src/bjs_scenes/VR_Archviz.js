@@ -105,7 +105,6 @@ const toLoad = meshesToLoad.length;
               loadMeshes("", "/src/3Dmodels/VR_Archviz/", meshesToLoad[index]);
       }
 
-
 //Setup environment
 const env = scene.createDefaultEnvironment({
         createSkybox: true,
@@ -120,14 +119,14 @@ const env = scene.createDefaultEnvironment({
       });
 
       const xrPromise = scene.createDefaultXRExperienceAsync({
-        floorMeshes: [ground]
+        floorMeshes: [env.ground]
     });
 
     return xrPromise.then((xrExperience) => {
         console.log("Done, WebXR is enabled.");
         return scene;
     });
-    
+
 };
 //***************/PLAYGROUND FUNCTIONAL CODE*****************************************
 
