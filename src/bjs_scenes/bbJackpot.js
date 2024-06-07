@@ -147,7 +147,7 @@ function createBaseScene () {
         /********** SOUND ************/
         const applause = new BABYLON.Sound("applause", "/src/audio/applause.wav", scene);
         const bell = new BABYLON.Sound("bell", "/src/audio/bell.wav", scene);
-        const turningWheel = new BABYLON.Sound("bell", "/src/audio/slotMachine.mp3", scene);
+        const turningWheel = new BABYLON.Sound("turningWheel", "/src/audio/slotMachine.mp3", scene);
         /******************************* */
 
 
@@ -171,6 +171,7 @@ function createBaseScene () {
         //Add shadow caster to each mesh within model
         model.meshes.forEach((element) => {
             shadowGenerator.addShadowCaster(element, true);
+
     });
 
         // On pick interpolations
@@ -184,6 +185,9 @@ function createBaseScene () {
                       parameter: mesh,
                     },
                     function () {
+                        particleSystem.stop();
+                        particleSystem2.stop(); 
+
                         turningWheel.play();
                         anims.forEach(anim => anim.start());
                         setTimeout(() => {
@@ -209,6 +213,7 @@ function createBaseScene () {
     for (let index = 0; index < meshesToLoad.length; index++) {
         loadMeshes("", "/src/3Dmodels/jackpot/", meshesToLoad[index]);
     }
+
 
     // Code in this function will run ~60 times per second
     scene.registerBeforeRender(function () {
