@@ -9,6 +9,9 @@ const meshesToLoad = [
     "groot.glb",
     "reel.glb",
     "VRGlasses.glb",
+    "syringe.glb",
+    "basqueHouse.glb",
+    "hand.glb",
     ];
 
 const iframeVid = {
@@ -16,6 +19,13 @@ const iframeVid = {
     "poi": "https://player.vimeo.com/video/451139384",
     "reel_primitive0": "https://player.vimeo.com/video/342067546",
     "reel_primitive1": "https://player.vimeo.com/video/342067546",
+    "hand": "https://player.vimeo.com/video/953670777",
+    "syringe_primitive0": "https://player.vimeo.com/video/1056211223",
+    "basqueHouse_primitive0": "https://player.vimeo.com/video/1056218128",
+    "basqueHouse_primitive1": "https://player.vimeo.com/video/1056218128",
+    "basqueHouse_primitive2": "https://player.vimeo.com/video/1056218128",
+    "basqueHouse_primitive3": "https://player.vimeo.com/video/1056218128",
+    "basqueHouse_primitive4": "https://player.vimeo.com/video/1056218128",
 };
 
 const redirect = {
@@ -158,7 +168,7 @@ function createBaseScene () {
                         trigger: BABYLON.ActionManager.OnPickTrigger,
                     },
                     function chooseAction(){
-
+                        console.log(mesh.name);
                         if(iframeVid[mesh.name]){
                             console.log(mesh.name);
                             //Check if there's an iframe already and if we have a video address
